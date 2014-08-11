@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>Teste</title>
+</head>
+<body>
+<div>
+<span>Ola Pessoal como estão? </span>
+<select>
+<option>bem</option>
+<option>mau</option>
+</select>
+</div>
+</body>
+</html>
