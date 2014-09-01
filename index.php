@@ -56,50 +56,79 @@
 				}
 			}
 			$(document).ready(function(){
-				var imag=$("imag");
-				if(imag.top< (-900))
-					imag.top=600;
-				imag.animate({top:'-1000px',opacity:'0.6'},"slow");
-			})
+				$('img').ready(function ani(){
+				if($('img').top<'0px')
+					$('img').top='600px';
+				$('img').animate({
+					top:'-=4px'
+				},"fast");
+				ani();
+				});
+			});
 		</script>
 		<style type="text/css">
 			body{
 				background: url("sakura.gif");
 			}
-			#imag{
+			img{
+				opacity: 0.5;
+			}
+			.img0{
 				position: absolute;
 				top: 600px;
 				left: 0px;
+			}.img1{
+				position: absolute;
+				top: 400px;
+				left: 800px;
+			}.img2{
+				position: absolute;
+				top: 100px;
+				left: 300px;
+			}.img3{
+				position: absolute;
+				top: 500px;
+				left: 100px;
+			}.img4{
+				position: absolute;
+				top: 300px;
+				left: 0px;
+
 			}
 		</style>
 	</head>
 	<body>
 		<div style="position:relative" id="wrapper">
-			<table class="signup" border="0" cellpadding="2" cellspacing="5" bgcolor="#fafafa">
-				<th colspan="2" align="center">Signup Form</th>
-				<form method="post" action="" onSubmit="return testeValid(this)">
-					<tr>
-						<td><label for="cNa">Nome:</label></td>
-						<td><input onblur="testNull('cNa')" id="cNa" type="text" name="cname" /></td>
-					</tr>
-					<tr>
-						<td><label for="cBD">Idade:</label></td>
-						<td><input id="cBD" type="text" name="cbirth" /></td>
-					</tr>
-					<tr>
-						<td><label for="cPw">Senha:</label></td>
-						<td><input id="cPw" type="password" name="cpass" /></td>
-					</tr>
-					<tr>
-						<td><label for="cPW">Confirmar Senha:</label></td>
-						<td><input id="cPW" type="password" name="cpass2" /></td>
-					</tr>
-					<tr><td colspan="2" align="center"><input type="submit" name="posts" value="Enviar" /></td></tr>
-				</form>
-			</table>
-			<div id="imag">
-				<img src="sakuram.gif" />
+			<div>
+				<table class="signup" border="0" cellpadding="2" cellspacing="5" bgcolor="#fafafa">
+					<th colspan="2" align="center">Signup Form</th>
+					<form method="post" action="" onSubmit="return testeValid(this)">
+						<tr>
+							<td><label for="cNa">Nome:</label></td>
+							<td><input onblur="testNull('cNa')" id="cNa" type="text" name="cname" /></td>
+						</tr>
+						<tr>
+							<td><label for="cBD">Idade:</label></td>
+							<td><input id="cBD" type="text" name="cbirth" /></td>
+						</tr>
+						<tr>
+							<td><label for="cPw">Senha:</label></td>
+							<td><input id="cPw" type="password" name="cpass" /></td>
+						</tr>
+						<tr>
+							<td><label for="cPW">Confirmar Senha:</label></td>
+							<td><input id="cPW" type="password" name="cpass2" /></td>
+						</tr>
+						<tr><td colspan="2" align="center"><input type="submit" name="posts" value="Enviar" /></td></tr>
+					</form>
+				</table>
 			</div>
+			<img class="img1" src="sakuram.gif" />
+			<img class="img2" src="sakuram.gif" />
+			<img class="img3" src="sakuram.gif" />
+			<img class="img4" src="sakuram.gif" />
+			<img class="img0" src="sakuram.gif" />
+			
 		</div>
 	</body>
 </html>
