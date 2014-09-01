@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Atividade 2</title>
+		<style type="text/css">
+		.hidden{
+			display: none;
+		}
+		form{
+			width: 500px;
+			height: 300px;
+			background-color: #f0f0f0;
+		}
+		span{
+			font-size: 15px;
+			color:  #f00303;
+		}
+		.prin{
+			position: relative;
+		}
+		#wrapper{
+			position: relative;
+		}
+		.lef{
+			position: absolute;
+			float: left;
+			width: 100px;
+		}
+		.rigt{
+			position: relative;
+			margin-left: 200px;
+		}
+		.dow{
+			clear: both;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="wrapper">
+			<table border="2" class="hidden">
+				<tr><th style="align:center" colspan="2">UFFS</th></tr>
+				<tr><th>CCR</th><th>Media</th></tr>
+				<tr><td>Mat.instrumental</td><td>6.1</td></tr>
+				<tr><td>Circ.Digitais</td><td>6.0</td></tr>
+				<tr><td>Introd.Inform.</td><td>7.0</td></tr>
+				<tr><td>Calc.I</td><td>6.1</td></tr>
+				<tr><td>Calc.II</td><td>6.0</td></tr>
+				<tr><td>Algoritmos</td><td>7.0</td></tr>
+				<tr><td>Sist.Digitais</td><td>8.0</td></tr>
+				<tr><td>Org.comp.</td><td>10.0</td></tr>
+				<tr><td>LPT.I</td><td>9.4</td></tr>
+				<tr><td>LPT.II</td><td>8.4</td></tr>
+				<tr><td>Estat.Basica</td><td>8.4</td></tr>
+				<tr><td>Prog.I</td><td>7.3</td></tr>
+				<tr><td>Teoria da comp.</td><td>7.3</td></tr>
+				<tr><td>Geom.Analitica</td><td>8.0</td></tr>
+				<tr><td>Algebra Linear</td><td>7.0</td></tr>
+			</table>
+			<form method="get" action="" >
+				<div>
+					<div class="prin">
+						<label for="cNm">Nome: </label>
+						<input type="text" name="nome" />
+					</div>
+					<div class="lef">
+						<span>Male:</span>
+						<input type="radio" name="sex" value="M" />
+						<span>Female:</span>
+						<input type="radio" name="sex" value="F" />
+					</div>
+					<div class="rigt">
+						<span>idade: Menor 18 </span>
+						<input type="checkbox" name="old[]" />
+						<span>Maior de 14</span>
+						<input type="checkbox" name="old[]" />
+						<span>igual ou maior 20</span>
+						<input type="checkbox" name="old[]" /><br />
+					</div>
+					<div class="dow">
+						<select name="dentro">
+							<option value="-">Nenhuma vez</option>
+							<option value="0">Primeiro teste</option>
+							<option value="1">2 ou mais testes</option>
+							<option value="2"> proximo/acima de 100 testes</option>
+						</select>
+					</div>
+					<input type="submit" name="envia" value="Enviar" />
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
