@@ -72,6 +72,7 @@
 			}
 			img{
 				opacity: 0.5;
+				z-index: 2;
 			}
 			.img0{
 				position: absolute;
@@ -95,11 +96,14 @@
 				left: 0px;
 
 			}
+			#upside{
+				z-index: 20;
+			}
 		</style>
 	</head>
 	<body>
 		<div style="position:relative" id="wrapper">
-			<div>
+			<div id="upside">
 				<table class="signup" border="0" cellpadding="2" cellspacing="5" bgcolor="#fafafa">
 					<th colspan="2" align="center">Signup Form</th>
 					<form method="post" action="" onSubmit="return testeValid(this)">
