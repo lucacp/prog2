@@ -57,11 +57,13 @@
 			}
 			$(document).ready(function(){
 				$('img').ready(function ani(){
-				if($('img').top<'0px')
-					$('img').top='600px';
+				var i=$('img');
+				if (i.top<-2000) {
+					i.top=0;
+				};
 				$('img').animate({
-					top:'-=4px'
-				},"fast");
+					top:'-=0.8px'
+				},1);
 				ani();
 				});
 			});
@@ -69,32 +71,40 @@
 		<style type="text/css">
 			body{
 				background: url("sakura.gif");
+				background-repeat: no-repeat;
+				overflow: hidden;
+			}
+			#wrapper{
+
 			}
 			img{
 				opacity: 0.5;
-				z-index: 2;
+				z-index: -1;
 			}
 			.img0{
 				position: absolute;
-				top: 600px;
-				left: 0px;
+				bottom: -700px;
+				right: 10px;
 			}.img1{
 				position: absolute;
-				top: 400px;
-				left: 800px;
+				bottom: -300px;
+				right: 40px;
 			}.img2{
 				position: absolute;
-				top: 100px;
-				left: 300px;
+				bottom: -1000px;
+				left: 60px;
 			}.img3{
 				position: absolute;
-				top: 500px;
+				bottom: -500px;
 				left: 100px;
 			}.img4{
 				position: absolute;
-				top: 300px;
-				left: 0px;
-
+				bottom: -300px;
+				left: 50px;
+			}.img5{
+				position: absolute;
+				bottom: -1100px;
+				right: 15px;
 			}
 			#upside{
 				z-index: 20;
@@ -132,7 +142,7 @@
 			<img class="img3" src="sakuram.gif" />
 			<img class="img4" src="sakuram.gif" />
 			<img class="img0" src="sakuram.gif" />
-			
+			<img class="img5" src="sakuram.gif" />
 		</div>
 	</body>
 </html>

@@ -33,7 +33,7 @@
 
 				if(!isset($_SESSION['usuario'])){ 
 					echo '<div id="cabeca">
-							<form method="post" action="signup.php" onsubmit="return testValid(this);">
+							<form method="post" action="signup.php" onSubmit="return testValid(this)">
 								<span>Login:</span>
 								<input type="text" name="login" size="8" />
 								<span>Senha:</span>
