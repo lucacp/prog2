@@ -9,14 +9,14 @@
 		<script type="text/javascript">
 			function testNull(name,id){
 				if(id==""||id==null)
-					return name."Invalido";
+					return name+" Invalido";
 				else
 					return "";
 			}
 			function testValid(form){
 				var fail;
-				fail = testNull("Usuario ",form.login.value);
-				fail += testNull("Senha ",form.pass.value);
+				fail = testNull("Usuario",form.login.value);
+				fail += testNull("Senha",form.pass.value);
 				if(fail == "")
 					return true;
 				else{
@@ -33,7 +33,7 @@
 
 				if(!isset($_SESSION['usuario'])){ 
 					echo '<div id="cabeca">
-							<form method="post" action="signup.php" onSubmit="return testValid(this)">
+							<form method="post" action="" onSubmit="return testValid(this)">
 								<span>Login:</span>
 								<input type="text" name="login" size="8" />
 								<span>Senha:</span>
