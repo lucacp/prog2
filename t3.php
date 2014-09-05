@@ -9,7 +9,7 @@
 		<script type="text/javascript">
 			function testNull(name,id){
 				if(id==""||id==null)
-					return name+" Invalido.\\n";
+					return name+" Invalido.\n";
 				else
 					return "";
 			}
