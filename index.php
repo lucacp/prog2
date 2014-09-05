@@ -56,9 +56,10 @@
 				}
 			}
 			$(document).ready(function(){
+				
 				$('img').ready(function ani(){
 				var i=$('img');
-				if (i.top<-2000) {
+				if (i.top<-10) {
 					i.top=0;
 				};
 				$('img').animate({

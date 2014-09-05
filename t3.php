@@ -1,11 +1,13 @@
 <?php
 	session_start();
+
 ?>
 <html>
 	<head>
 		<title>Registro de eventos gerais</title>
 		<meta charset="UTF-8" />
-		<link rel="stylesheet" type="text/css" href="stilo.css">
+		<link rel="stylesheet" type="text/css" href="stilo.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 		<script type="text/javascript">
 			function testNull(name,id){
 				if(id==""||id==null)
@@ -43,11 +45,11 @@
 						</div>';
 				}?>
 			<div class="eventos">
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
+				<div><a href=""><img src="sakuram.gif" /></a></div>
+				<div><a href=""></a></div>
+				<div><a href=""></a></div>
+				<div><a href=""></a></div>
+				<div><a href=""></a></div>
 			</div>
 		</div>
 	</body>
