@@ -7,7 +7,7 @@
 			$_SESSION['erro1']=1;
 		}
 		if(is_null($pass)){
-			$_SESSION['erro2']=1;
+			$_SESSION['erro2']=1;	
 		}
 		
 	}

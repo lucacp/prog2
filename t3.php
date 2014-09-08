@@ -35,6 +35,7 @@
 
 				if(!isset($_SESSION['usuario'])){ 
 					echo '<div id="cabeca">
+							<a href="signup.php">Cadastre-se</a>
 							<form method="post" action="" onSubmit="return testValid(this)">
 								<span>Login:</span>
 								<input type="text" name="login" size="8" />
@@ -47,9 +48,9 @@
 			<div class="eventos">
 				<h1 id="tit">Eventos</h1>
 				<div class="ev1"><a href=""><img src="sakuram.gif" /></a></div>
-				<div class="ev2"><a href=""><img src="sakuram.gif" /></a></div>
+				<div class="ev2"><a href=""><img src="sakura.gif" /></a></div>
 				<div class="ev3"><a href=""><img src="sakuram.gif" /></a></div><br />
-				<div class="ev1"><a href=""><img src="sakuram.gif" /></a></div>
+				<div class="ev1"><a href=""><img src="sakura.gif" /></a></div>
 				<div class="ev2"><a href=""><img src="sakuram.gif" /></a></div>
 			</div>
 		</div>
