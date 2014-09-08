@@ -9,4 +9,30 @@
 }
 .eventos{
 	position: absolute;
+	width: 800px;
+	height: 600px;
+	background-color: #f0f0f0;
+
+}
+#tit{
+	text-align: center;
+}
+img{
+	width: 100px;
+	height: 100px;
+}
+.ev1{
+	position: relative;
+	margin-left: 10px;
+	display: inline;
+}
+.ev2{
+	position: relative;
+	margin-left: 20px;
+	display: inline;
+}
+.ev3{
+	position: relative;
+	margin-left: 30px;
+	display: inline;
 }

@@ -45,11 +45,12 @@
 						</div>';
 				}?>
 			<div class="eventos">
-				<div><a href=""><img src="sakuram.gif" /></a></div>
-				<div><a href=""></a></div>
-				<div><a href=""></a></div>
-				<div><a href=""></a></div>
-				<div><a href=""></a></div>
+				<h1 id="tit">Eventos</h1>
+				<div class="ev1"><a href=""><img src="sakuram.gif" /></a></div>
+				<div class="ev2"><a href=""><img src="sakuram.gif" /></a></div>
+				<div class="ev3"><a href=""><img src="sakuram.gif" /></a></div><br />
+				<div class="ev1"><a href=""><img src="sakuram.gif" /></a></div>
+				<div class="ev2"><a href=""><img src="sakuram.gif" /></a></div>
 			</div>
 		</div>
 	</body>
