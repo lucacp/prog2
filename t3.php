@@ -1,6 +1,8 @@
 <?php
 	session_start();
-
+	if (isset($_SESSION['usuario'])) {
+		header('location:t3/index.php');
+	}
 ?>
 <html>
 	<head>
@@ -31,20 +33,16 @@
 	</head>
 	<body>
 		<div id="wrapper">
-			<?php 
-
-				if(!isset($_SESSION['usuario'])){ 
-					echo '<div id="cabeca">
-							<a href="signup.php">Cadastre-se</a>
-							<form method="post" action="" onSubmit="return testValid(this)">
-								<span>Login:</span>
-								<input type="text" name="login" size="8" />
-								<span>Senha:</span>
-								<input type="password" name="pass" size="10" />
-								<input type="submit" name="enviou" value="Enviar" />
-							</form>
-						</div>';
-				}?>
+			<div id="cabeca">
+				<a href="signup.php">Cadastre-se</a>
+				<form method="post" action="" onSubmit="return testValid(this)">
+					<span>Login:</span>
+					<input type="text" name="login" size="8" />
+					<span>Senha:</span>
+					<input type="password" name="pass" size="10" />
+					<input type="submit" name="enviou" value="Enviar" />
+				</form>
+			</div>
 			<div class="eventos">
 				<h1 id="tit">Eventos</h1>
 				<div class="ev1"><a href=""><img src="sakuram.gif" /></a></div>
