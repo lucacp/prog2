@@ -3,12 +3,15 @@
 	if (isset($_POST['enviou'])) {
 		$login=$_POST['login'];
 		$pass=$_POST['pass'];
-		if(is_null($login)){
+		if(!isset($login)){
 			$_SESSION['erro1']=1;
+			header("location:login.php");
 		}
-		if(is_null($pass)){
-			$_SESSION['erro2']=1;	
+		if(!isset($pass)){
+			$_SESSION['erro2']=1;
+			header("location:login.php");
 		}
 		
 	}
+	
 ?>
