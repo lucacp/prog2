@@ -79,30 +79,30 @@
 
 			}
 			img{
-				opacity: 0.5;
+				opacity: 0.7;
 				z-index: -1;
 			}
-			.img0{
+			#img0{
 				position: absolute;
 				bottom: -700px;
 				right: 10px;
-			}.img1{
+			}#img1{
 				position: absolute;
 				bottom: -300px;
 				right: 40px;
-			}.img2{
+			}#img2{
 				position: absolute;
 				bottom: -1000px;
 				left: 60px;
-			}.img3{
+			}#img3{
 				position: absolute;
 				bottom: -500px;
 				left: 100px;
-			}.img4{
+			}#img4{
 				position: absolute;
 				bottom: -300px;
 				left: 50px;
-			}.img5{
+			}#img5{
 				position: absolute;
 				bottom: -1100px;
 				right: 15px;
@@ -138,12 +138,12 @@
 					</form>
 				</table>
 			</div>
-			<img class="img1" src="sakuram.gif" />
-			<img class="img2" src="sakuram.gif" />
-			<img class="img3" src="sakuram.gif" />
-			<img class="img4" src="sakuram.gif" />
-			<img class="img0" src="sakuram.gif" />
-			<img class="img5" src="sakuram.gif" />
+			<img id="img0" class="imgs" src="sakuram.gif" />
+			<img id="img1" class="imgs" src="sakuram.gif" />
+			<img id="img2" class="imgs" src="sakuram.gif" />
+			<img id="img3" class="imgs" src="sakuram.gif" />
+			<img id="img4" class="imgs" src="sakuram.gif" />
+			<img id="img5" class="imgs" src="sakuram.gif" />
 		</div>
 	</body>
 </html>

@@ -3,6 +3,15 @@
 	if (isset($_SESSION['usuario'])) {
 		header('location:t3/index.php');
 	}
+	if(isset($_POST['enviou'])){
+		$login=$_POST['login'];
+		$pass=$_POST['pass'];
+		$root="root";
+		$pas="";
+		$database="teste";
+		$db=mysql_connect($root,$pas,$database);
+		
+	}
 ?>
 <html>
 	<head>
