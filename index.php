@@ -63,16 +63,17 @@
 					i.top=0;
 				};
 				$('img').animate({
-					top:'-=0.8px'
+					top:'-=0.3px'
 				},1);
 				ani();
 				});
 			});
+
 		</script>
 		<style type="text/css">
 			body{
 				background: url("sakura.gif");
-				background-repeat: no-repeat;
+				background-repeat: repeat;
 				overflow: hidden;
 			}
 			#wrapper{

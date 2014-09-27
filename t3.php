@@ -19,6 +19,7 @@
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="stilo.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<script src="jquery.min.js"></script>
 		<script type="text/javascript">
 			function testNull(name,id){
 				if(id==""||id==null)
@@ -38,6 +39,14 @@
 				}
 
 			}
+			$(document).ready(function(){
+				$('input').focus(function(){
+					$(this).css("background-color","ff0000");
+				});
+				$('input').blur(function(){
+					$(this).css("background-color","ffffff")
+				});
+			});
 		</script>
 	</head>
 	<body>
@@ -46,7 +55,7 @@
 				<a href="signup.php">Cadastre-se</a>
 				<form method="post" action="" onSubmit="return testValid(this)">
 					<span>Login:</span>
-					<input type="text" name="login" size="8" />
+					<input type="text" name="login" size="8" class="validate[required]" />
 					<span>Senha:</span>
 					<input type="password" name="pass" size="10" />
 					<input type="submit" name="enviou" value="Enviar" />

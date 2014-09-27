@@ -2,6 +2,15 @@
 <html>
 	<head>
 		<title>Atividade 2</title>
+		<script src="jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('table').click(function(){
+					$(this).css("background-color","00f");
+					$('tr').css("background-color","ff0000");
+				});
+			});
+		</script>
 		<style type="text/css">
 		.hidden{
 			display: none;
@@ -37,7 +46,7 @@
 	</head>
 	<body>
 		<div id="wrapper">
-			<table border="2" class="hidden">
+			<table border="2" id="idi">
 				<tr><th style="align:center" colspan="2">UFFS</th></tr>
 				<tr><th>CCR</th><th>Media</th></tr>
 				<tr><td>Mat.instrumental</td><td>6.1</td></tr>
