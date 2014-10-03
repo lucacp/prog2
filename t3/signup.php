@@ -13,31 +13,39 @@
 		include_once '../database.php';
 		$database="icetest";
 		mysql_select_db($database);
-		$query="SELECT `id`,`nome`,`senha` from `usuario` where `nome`='$login';";
+		$query="SELECT `id`,`nome`,`senha`,`nivel` FROM `usuario` WHERE `nome`='$login' AND `senha`='".md5($pass)."';";
 		$result=mysql_query($query,$csql);
 		$rows=mysql_fetch_assoc($result);
 		if($rows>0){
-			$user=$rows['nome'];
-			if(md5($pass)!=$rows['senha']){
-				$_SESSION['erro']=3;
-			};
-
-		}
-		else{
-			$insert="INSERT INTO `usuario` values(null,'$login',md5('$pass'),2);";
-			$result=mysql_query($insert,$csql);
-			$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$login';";
-			$result2=mysql_query($query,$csql);
-			$rows2=mysql_fetch_assoc($result2);
 			include_once '../dataout.php';
-			if($rows2>0){
-				$_SESSION['usuar']=$rows2['nome'];
-				$_SESSION['nivel']=$rows2['nivel'];
-				
-				header('location:t3.php');
+			$_SESSION['usuar']=$rows['nome'];
+			$_SESSION['nivel']=$rows['nivel'];
+			header('location:t3.php');
+		}
+		else{ 
+			$query="SELECT `id`,`nome` FROM `usuario` WHERE `nome`='$login';";
+			$result=mysql_query($query,$csql);
+			$rows=mysql_fetch_assoc($result);
+			if($rows>0){
+				$_SESSION['erro']=3;
+			}
+			else{
+				$insert="INSERT INTO `usuario` values(null,'$login',md5('$pass'),2);";
+				$result=mysql_query($insert,$csql);
+				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$login';";
+				$result2=mysql_query($query,$csql);
+				$rows2=mysql_fetch_assoc($result2);
+				include_once '../dataout.php';
+				if($rows2>0){
+					$_SESSION['usuar']=$rows2['nome'];
+					$_SESSION['nivel']=$rows2['nivel'];
+					header('location:t3.php');
+				};
 			};
 		};
 		include_once '../dataout.php';
+	}else{
+		unset($_SESSION['erro']);
 	};
 	
 ?>

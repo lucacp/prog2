@@ -51,6 +51,7 @@
 			</div>';
 			?>
 			<div class="eventos">
+				<a href="logout.php">Sair</a>
 				<h1 id="tit">Eventos</h1>
 				<div class="ev1"><a href=""><img src="../sakuram.gif" /></a></div>
 				<div class="ev2"><a href=""><img src="../sakura.gif" /></a></div>
@@ -58,6 +59,7 @@
 				<div class="ev1"><a href=""><img src="../sakura.gif" /></a></div>
 				<div class="ev2"><a href=""><img src="../sakuram.gif" /></a></div>
 			</div>
+
 		</div>
 	</body>
 </html>
