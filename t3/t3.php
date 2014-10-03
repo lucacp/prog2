@@ -11,8 +11,9 @@
 	<head>
 		<title>Pagina de Login</title>
 		<meta charset="UTF-8" />
-		<link rel="stylesheet" type="text/css" href="stilo.css" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../stilo.css" />
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+		<script src="../jquery.min.js"></script>
 		<script type="text/javascript">
 			function testNull(name,id){
 				if(id==""||id==null)
@@ -36,7 +37,9 @@
 	</head>
 	<body>
 		<div id="wrapper">
-			<div id="signup">
+			<?php if(!isset($_SESSION['usuar']))
+
+			echo '<div id="signup">
 				<a href="signup.php">Cadastre-se</a>
 				<form method="post" action="" onSubmit="return testValid(this)">
 					<label for="log">Login:</label>
@@ -45,6 +48,15 @@
 					<input id="pw" type="password" name="pass" size="10" />
 					<input type="submit" name="enviou" value="Enviar" />
 				</form>
+			</div>';
+			?>
+			<div class="eventos">
+				<h1 id="tit">Eventos</h1>
+				<div class="ev1"><a href=""><img src="../sakuram.gif" /></a></div>
+				<div class="ev2"><a href=""><img src="../sakura.gif" /></a></div>
+				<div class="ev3"><a href=""><img src="../sakuram.gif" /></a></div><br />
+				<div class="ev1"><a href=""><img src="../sakura.gif" /></a></div>
+				<div class="ev2"><a href=""><img src="../sakuram.gif" /></a></div>
 			</div>
 		</div>
 	</body>

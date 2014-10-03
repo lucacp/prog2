@@ -21,24 +21,6 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 		<script src="jquery.min.js"></script>
 		<script type="text/javascript">
-			function testNull(name,id){
-				if(id==""||id==null)
-					return name+" Invalido.\n";
-				else
-					return "";
-			}
-			function testValid(form){
-				var fail;
-				fail = testNull("Usuario",form.login.value);
-				fail += testNull("Senha",form.pass.value);
-				if(fail == "")
-					return true;
-				else{
-					alert(fail);
-					return false;
-				}
-
-			}
 			$(document).ready(function(){
 				$('input').focus(function(){
 					$(this).css("background-color","ff0000");
@@ -52,13 +34,13 @@
 	<body>
 		<div id="wrapper">
 			<div id="cabeca">
-				<a href="signup.php">Cadastre-se</a>
-				<form method="post" action="" onSubmit="return testValid(this)">
+				<a href="t3/signup.php">Cadastre-se</a>
+				<form method="post" action="t3/signup.php" onSubmit="return testValid(this)">
 					<span>Login:</span>
 					<input type="text" name="login" size="8" class="validate[required]" />
 					<span>Senha:</span>
 					<input type="password" name="pass" size="10" />
-					<input type="submit" name="enviou" value="Enviar" />
+					<input type="submit" name="envio" value="Enviar" />
 				</form>
 			</div>
 			<div class="eventos">
