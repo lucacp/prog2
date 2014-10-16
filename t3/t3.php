@@ -1,12 +1,13 @@
 <?php
 	session_start();
-	if (isset($_SESSION['usuario'])) {
-		header('location:index.php');
+	if (!isset($_SESSION['usuar'])) {
+		header('location:../t3.php');
 	}
 	if(isset($_POST['enviou'])){
 		
 	}
 ?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Pagina de Login</title>
@@ -15,7 +16,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 		<script src="../jquery.min.js"></script>
 		<script type="text/javascript">
-			function testNull(name,id){
+			/*function testNull(name,id){
 				if(id==""||id==null)
 					return name+" Invalido.\n";
 				else
@@ -32,26 +33,12 @@
 					return false;
 				}
 
-			}
+			}*/
 		</script>
 	</head>
 	<body>
 		<div id="wrapper">
-			<?php if(!isset($_SESSION['usuar']))
-
-			echo '<div id="signup">
-				<a href="signup.php">Cadastre-se</a>
-				<form method="post" action="" onSubmit="return testValid(this)">
-					<label for="log">Login:</label>
-					<input id="log" type="text" name="login" size="8" />
-					<label for="pw">Senha:</label>
-					<input id="pw" type="password" name="pass" size="10" />
-					<input type="submit" name="enviou" value="Enviar" />
-				</form>
-			</div>';
-			?>
 			<div class="eventos">
-				<a href="logout.php">Sair</a>
 				<h1 id="tit">Eventos</h1>
 				<div class="ev1"><a href=""><img src="../sakuram.gif" /></a></div>
 				<div class="ev2"><a href=""><img src="../sakura.gif" /></a></div>
@@ -59,7 +46,8 @@
 				<div class="ev1"><a href=""><img src="../sakura.gif" /></a></div>
 				<div class="ev2"><a href=""><img src="../sakuram.gif" /></a></div>
 			</div>
-
+			<a style="position:relative;" href="logout.php">Sair.</a>
+				
 		</div>
 	</body>
 </html>

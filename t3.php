@@ -13,6 +13,7 @@
 		
 	}
 ?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Registro de eventos gerais</title>

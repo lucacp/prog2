@@ -49,6 +49,7 @@
 	};
 	
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -102,7 +103,7 @@
 		if(isset($_SESSION['erro'])&&$_SESSION['erro']==2)
 			echo '<span class="erro">Senha não pode ser Vazia.</span>';
 		if(isset($_SESSION['erro'])&&$_SESSION['erro']==3)
-			echo '<span class="erro">Senha Invalida.</span>';
+			echo '<span class="erro">Usuario já Cadastrado.</span>';
 		?>
 		<form method="post" action="" onsubmit="return valida(this);">
 			<table class="formul">
