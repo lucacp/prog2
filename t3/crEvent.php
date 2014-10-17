@@ -44,7 +44,6 @@
 				echo 'Evento ja existente.\n Por favor escolha outro nome de evento';
 			}
 			else{
-
 				$query2="INSERT INTO `evento` values(null,'$arq','$descr','".$_SESSION['nivel']."');";
 				mysql_query($query2,$csql);
 				$query="SELECT `nome` FROM `evento` where `nome`='".$arq."';";

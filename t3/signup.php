@@ -98,7 +98,7 @@
 	</script>
 </head>
 <body>
-	<div id="wrapper">
+	<div class="container">
 		<?php 
 		if(isset($_SESSION['erro'])&&$_SESSION['erro']==1)
 			echo'<span class="erro">Usuario não pode estar Vazio.</span>';
@@ -116,6 +116,7 @@
 				<tr><td colspan="2"><input type="submit" name="envio" value="Enviar" /></td></tr>
 			</table>
 		</form>
+		<a href="../t3.php">Voltar</a>
 	</div>
 </body>
 </html>
