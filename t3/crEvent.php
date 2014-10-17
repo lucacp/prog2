@@ -3,7 +3,7 @@
 	if (!isset($_SESSION['usuar'])) {
 		header('location:../t3.php');
 	}
-	else if ($_SESSION['nivel']>=2) {
+	else if ($_SESSION['nivel']>2) {
 		header('location:t3.php');
 	}
 	if (isset($_POST['submit'])) {
@@ -46,13 +46,19 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 		<title>Criar Evento</title>
 
 	</head>
 	<body>
 		<div id="wrapper">
 			<form method="post" action="" name="teste" enctype="multipart/form-data" >
-
+				<label for="nomeA">Nome do Evento:</label>
+				<input type="text" id="nomeA" name="nomearq" size="20" />
+				<span>Enviar Foto do Evento: </span>
+				<input type="file" name="arquiv" required />
+				<input type="submit" name="submit" />
 			</form>
 		</div>
 	</body>

@@ -11,7 +11,7 @@
 			$_SESSION['erro']=2;
 		}
 		include_once '../database.php';
-		$database="icetest";
+		$database="eventbase";
 		mysql_select_db($database);
 		$query="SELECT `id`,`nome`,`senha`,`nivel` FROM `usuario` WHERE `nome`='$login' AND `senha`='".md5($pass)."';";
 		$result=mysql_query($query,$csql);
@@ -53,7 +53,9 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Cadastro de Usuario</title>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 	<script type="text/javascript">
 		function testUser(usua){
 			if(usua==""||usua==null){

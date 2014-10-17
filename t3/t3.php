@@ -3,15 +3,25 @@
 	if (!isset($_SESSION['usuar'])) {
 		header('location:../t3.php');
 	}
+	else{
+		include_once '../database.php';
+		$database="eventbase";
+		mysql_select_db($database);
+		$query="SELECT `nome` FROM `evento` where `nivel`>='".$_SESSION['nivel']."';";
+		$result=mysql_query($query,$csql);
+	};
 	if(isset($_POST['enviou'])){
 		
 	}
+
+
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Pagina de Login</title>
 		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="../stilo.css" />
 		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 		<script src="../jquery.min.js"></script>
@@ -37,16 +47,22 @@
 		</script>
 	</head>
 	<body>
-		<div id="wrapper">
+		<div class="container">
 			<div class="eventos">
 				<h1 id="tit">Eventos</h1>
-				<div class="ev1"><a href=""><img src="../sakuram.gif" /></a></div>
-				<div class="ev2"><a href=""><img src="../sakura.gif" /></a></div>
-				<div class="ev3"><a href=""><img src="../sakuram.gif" /></a></div><br />
-				<div class="ev1"><a href=""><img src="../sakura.gif" /></a></div>
-				<div class="ev2"><a href=""><img src="../sakuram.gif" /></a></div>
+				<?php
+				include '../localImages.php';
+				for($i=1;$rows=mysql_fetch_assoc($result);$i++){
+					echo '<div class="ev'.$i.'"><a href=""><img src="'.$InLocal.$rows['nome'].'" /></a></div>';
+				};
+				?>
 			</div>
-			<a style="position:relative;" href="logout.php">Sair.</a>
+			<div>
+				<a href="crEvent.php">Criar Novo Evento</a>
+			</div>
+			<div class="log">
+				<a href="logout.php">Sair.</a>
+			</div>
 				
 		</div>
 	</body>

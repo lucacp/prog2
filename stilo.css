@@ -8,7 +8,8 @@
 	right:0px;
 }
 .eventos{
-	position: absolute;
+	position: relative;
+	border: outset;
 	width: 500px;
 	height: 400px;
 	background-color: #f0f0f0;
@@ -39,4 +40,9 @@ img{
 #signup{
 	position: relative;
 	background-color: #b0b0b0;
+}
+.log{
+	position: relative;
+	width: 40px;
+	border: inset;
 }
