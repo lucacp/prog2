@@ -7,9 +7,11 @@
 		header('location:t3.php');
 	}
 	if (isset($_POST['submit'])) {
+	$arq=$_POST['nomearq'].".";
+	$descr=$_POST['descr'];
   	$Exts = array("gif", "jpeg", "jpg", "png");
 	$temp = explode(".", $_FILES["arquiv"]["name"]);
-	$extension = end($temp);
+	$arq.=$extension = end($temp);
 	if ((($_FILES["arquiv"]["type"] == "image/gif")
 		|| ($_FILES["arquiv"]["type"] == "image/jpeg")
 		|| ($_FILES["arquiv"]["type"] == "image/jpg")
@@ -24,16 +26,34 @@
 		}
 		else
 		{
-			if (file_exists("upload/" . $_FILES["arquiv"]["name"]))
+			if (file_exists("upload/" . $arq ))
 		    {
-		    	echo "Ok<br />";
+		    	//echo "Evento ja estava no cadastro";
 		    }
 		    else
 		    {
 			    move_uploaded_file($_FILES["arquiv"]["tmp_name"],
-			    "upload/" . $_FILES["arquiv"]["name"]);
+			    "upload/".$arq);
 			};
-			$arq='upload/'.$_FILES["arquiv"]["name"];
+			include_once '../database.php';
+			$database="eventbase";
+			mysql_select_db($database);
+			$query="SELECT `nome` FROM `evento` where `nome`='$arq';";
+			$result=mysql_query($query,$csql);
+			if($rows=mysql_fetch_assoc($result)){
+				echo 'Evento ja existente.\n Por favor escolha outro nome de evento';
+			}
+			else{
+
+				$query2="INSERT INTO `evento` values(null,'$arq','$descr','".$_SESSION['nivel']."');";
+				mysql_query($query2,$csql);
+				$query="SELECT `nome` FROM `evento` where `nome`='".$arq."';";
+				$result=mysql_query($query,$csql);
+				if($rows=mysql_fetch_assoc($result)){
+					echo 'Evento Cadastrado com Sucesso';
+				};
+			};
+			include_once '../dataout.php';
 		};
 	}
 	else
@@ -52,14 +72,17 @@
 
 	</head>
 	<body>
-		<div id="wrapper">
+		<div class="container">
 			<form method="post" action="" name="teste" enctype="multipart/form-data" >
 				<label for="nomeA">Nome do Evento:</label>
 				<input type="text" id="nomeA" name="nomearq" size="20" />
+				<label for="descris">Descrisão do evento: (opcional)</label>
+				<textarea name="descr"></textarea>
 				<span>Enviar Foto do Evento: </span>
 				<input type="file" name="arquiv" required />
 				<input type="submit" name="submit" />
 			</form>
+			<a href="t3.php">Pagina Principal</a>
 		</div>
 	</body>
 </html>
