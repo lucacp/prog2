@@ -15,7 +15,7 @@
 		include_once '../database.php';
 		$database="eventbase";
 		mysql_select_db($database);
-		$query="SELECT `id`,`nome`,`senha`,`nivel` FROM `usuario` WHERE `nome`='$login' AND `senha`='".md5($pass)."';";
+		$query="SELECT `id`,`nome`,`senha`,`nivel` FROM `usuario` WHERE `nome`='$login' AND `senha`=md5('$pass');";
 		$result=mysql_query($query,$csql);
 		$rows=mysql_fetch_assoc($result);
 		if($rows>0){
@@ -32,9 +32,9 @@
 				$_SESSION['erro']=3;
 			}
 			else{
-				$insert="INSERT INTO `usuario` values(null,'$login','".md5($pass)."',2,'$email','$cpf');";
+				$insert="INSERT INTO `usuario` values(null,'$login',md5('$pass'),2,'$email','$cpf');";
 				$result=mysql_query($insert,$csql);
-				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$login' and `senha`='".md5($pass)."';";
+				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$login' and `senha`=md5('$pass');";
 				$result2=mysql_query($query,$csql);
 				$rows2=mysql_fetch_assoc($result2);
 				include_once '../dataout.php';
