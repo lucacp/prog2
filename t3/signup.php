@@ -4,6 +4,8 @@
 	if (isset($_POST['envio'])) {
 		$login=$_POST['login'];
 		$pass=$_POST['pass'];
+		$email=$_POST['email'];
+		$cpf=$_POST['cpf'];
 		if(!isset($login)){
 			$_SESSION['erro']=1;
 		}
@@ -30,9 +32,9 @@
 				$_SESSION['erro']=3;
 			}
 			else{
-				$insert="INSERT INTO `usuario` values(null,'$login',md5('$pass'),2);";
+				$insert="INSERT INTO `usuario` values(null,'$login','".md5($pass)."',2,'$email','$cpf');";
 				$result=mysql_query($insert,$csql);
-				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$login';";
+				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$login' and `senha`='".md5($pass)."';";
 				$result2=mysql_query($query,$csql);
 				$rows2=mysql_fetch_assoc($result2);
 				include_once '../dataout.php';
@@ -82,11 +84,29 @@
 			};
 			return "";	
 		}
-		
+		function testEmail(mail){
+			if(mail==""||mail==null){
+				return "E-Mail nao pode estar Vazia.\n";
+			}else if(mail.length<10){
+				return "E-Mail deve ter mais de 10 digitos.\n";
+			}
+			return "";
+		}
+		function testCpf(cpf){
+			if (cpf==""||cpf==null) {
+				return "CPF nao pode estar Vazio.\n";
+			}
+			else if (cpf.length<11||cpf.length>11) {
+				return "CPF deve possuir 11 Digitos.\n";
+			};
+			return "";
+		}
 		function valida(form){
 			var fail;
 			fail = testUser(form.login.value);
 			fail += testPass(form.pass.value,form.pass2.value);
+			fail += testEmail(form.email.value);
+			fail += testCpf(form.cpf.value);
 			if(fail==""||fail==null){
 				return true;
 			}
@@ -113,10 +133,12 @@
 				<tr><td><label for="usuario">Usuario:</label></td><td><input id="usuario" type="text" size="30" name="login" /></td></tr>
 				<tr><td><label for="senha">Senha:</label></td><td><input type="password" id="senha" name="pass" /></td></tr>
 				<tr><td><label for="senha">Confirmação de Senha:</label></td><td><input type="password" id="senha" name="pass2" /></td></tr>
+				<tr><td><label for="emai">E-Mail:</label></td><td><input type="text" id="emai" name="email" size="48" /></td></tr>
+				<tr><td><label for="cp">CPF ou Numero de Registro:</label></td><td><input type="text" id="cp" name="cpf" size="14" /></td></tr>
 				<tr><td colspan="2"><input type="submit" name="envio" value="Enviar" /></td></tr>
 			</table>
 		</form>
-		<a href="../t3.php">Voltar</a>
+		<a href="logout.php">Voltar</a>
 	</div>
 </body>
 </html>

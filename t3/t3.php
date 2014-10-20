@@ -7,7 +7,7 @@
 		include_once '../database.php';
 		$database="eventbase";
 		mysql_select_db($database);
-		$query="SELECT `eid`,`nome` FROM `evento` where `nivel`>='".$_SESSION['nivel']."';";
+		$query="SELECT `eid`,`nome` FROM `evento` where `nivel`>=".$_SESSION['nivel'].";";
 		$result=mysql_query($query,$csql);
 
 	};
@@ -30,11 +30,8 @@
 				<h1 id="tit">Eventos</h1>
 				<?php
 				include '../localImages.php';
-				for($i=1;$rows=mysql_fetch_assoc($result);$i++){
+				for($i=1;$rows=mysql_fetch_assoc($result)&&$i<5;$i++){
 					echo '<div class="ev'.$i.'"><a href="detailEvent.php?event='.$rows['eid'].'"><img src="'.$InLocal.$rows['nome'].'" /></a></div>';
-					if ($i>4) {
-						$i=1;
-					};
 				};
 				include_once '../dataout.php';
 				?>

@@ -3,12 +3,8 @@
 	if (isset($_SESSION['usuario'])) {
 		header('location:t3/index.php');
 	}
-	if(isset($_POST['enviou'])){
-		$login=$_POST['login'];
-		$pass=$_POST['pass'];
-		
-	}else{
-
+	if(!isset($_POST['enviou']))
+	{
 		include_once 'database.php';
 		$database="eventbase";
 		mysql_select_db($database);
