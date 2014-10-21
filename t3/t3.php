@@ -25,7 +25,7 @@
 		<script src="../jquery.min.js"></script>
 	</head>
 	<body>
-		<div class="container">
+		<div class="container-fluid">
 			<div class="eventos">
 				<h1 id="tit">Eventos</h1>
 				<?php

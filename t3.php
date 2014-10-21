@@ -34,7 +34,7 @@
 		</script>
 	</head>
 	<body>
-		<div class="container">
+		<div class="container-fluid">
 			<div id="cabeca">
 				<a href="t3/signup.php">Cadastre-se</a>
 				<form method="post" action="t3/signup.php" onSubmit="return testValid(this)">
