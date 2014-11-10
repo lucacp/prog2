@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	
-	if (isset($_POST['envio'])) {
+
+	if (isset($_POST['envio1'])) {
 		$login=$_POST['login'];
 		$pass=$_POST['pass'];
 		$email=$_POST['email'];
@@ -15,7 +15,7 @@
 		include_once '../database.php';
 		$database="eventbase";
 		mysql_select_db($database);
-		$query="SELECT `id`,`nome`,`senha`,`nivel` FROM `usuario` WHERE `nome`='$login' AND `senha`=md5('$pass');";
+		$query="SELECT `id`,`nome`,`senha`,`nivel` FROM `usuario` WHERE `nome`='$login' AND `senha`=\'MD5($pass)\';";
 		$result=mysql_query($query,$csql);
 		$rows=mysql_fetch_assoc($result);
 		if($rows>0){
@@ -32,9 +32,9 @@
 				$_SESSION['erro']=3;
 			}
 			else{
-				$insert="INSERT INTO `usuario` values(null,'$login',md5('$pass'),2,'$email','$cpf');";
+				$insert="INSERT INTO `usuario` values(null,'$login','".md5($pass)."',2,'$email','$cpf');";
 				$result=mysql_query($insert,$csql);
-				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$login' and `senha`=md5('$pass');";
+				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$login' and `senha`=\'MD5($pass)\';";
 				$result2=mysql_query($query,$csql);
 				$rows2=mysql_fetch_assoc($result2);
 				include_once '../dataout.php';
@@ -58,6 +58,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Cadastro de Usuario</title>
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../stilo.css">
 	<script type="text/javascript">
 		function testUser(usua){
 			if(usua==""||usua==null){
@@ -121,23 +122,25 @@
 	<div class="container">
 		<?php 
 		if(isset($_SESSION['erro'])&&$_SESSION['erro']==1)
-			echo'<span class="erro">Usuario não pode estar Vazio.</span>';
+			echo'<span class="error">Usuario não pode estar Vazio.</span>';
 		if(isset($_SESSION['erro'])&&$_SESSION['erro']==2)
-			echo '<span class="erro">Senha não pode ser Vazia.</span>';
+			echo '<span class="error">Senha não pode ser Vazia.</span>';
 		if(isset($_SESSION['erro'])&&$_SESSION['erro']==3)
-			echo '<span class="erro">Usuario já Cadastrado.</span>';
+			echo '<span class="error">Usuario já Cadastrado.</span>';
 		?>
-		<form method="post" action="" onsubmit="return valida(this);">
-			<table class="formul">
-				<tr><th colspan="2">Ragistro de Usuario</th></tr>
-				<tr><td><label for="usuario">Usuario:</label></td><td><input id="usuario" type="text" size="30" name="login" /></td></tr>
-				<tr><td><label for="senha">Senha:</label></td><td><input type="password" id="senha" name="pass" /></td></tr>
-				<tr><td><label for="senha">Confirmação de Senha:</label></td><td><input type="password" id="senha" name="pass2" /></td></tr>
-				<tr><td><label for="emai">E-Mail:</label></td><td><input type="text" id="emai" name="email" size="48" /></td></tr>
-				<tr><td><label for="cp">CPF ou Numero de Registro:</label></td><td><input type="text" id="cp" name="cpf" size="14" /></td></tr>
-				<tr><td colspan="2"><input type="submit" name="envio" value="Enviar" /></td></tr>
-			</table>
-		</form>
+		<div class="eventos">
+			<form method="post" action="" onsubmit="return valida(this);">
+				<table class="formul">
+					<tr><th colspan="2" ><h1>Registro de Usuario</h1></th></tr>
+					<tr><td class="row"><label for="usuario">Usuario:</label></td><td><input id="usuario" type="text" size="30" name="login" /></td></tr>
+					<tr><td class="row"><label for="senha">Senha:</label></td><td><input type="password" id="senha" name="pass" /></td></tr>
+					<tr><td class="row"><label for="senha">Confirmação de Senha:</label></td><td><input type="password" id="senha" name="pass2" /></td></tr>
+					<tr><td class="row"><label for="emai">E-Mail:</label></td><td><input type="text" id="emai" name="email" size="48" /></td></tr>
+					<tr><td class="row"><label for="cp">CPF ou Numero de Registro:</label></td><td><input type="text" id="cp" name="cpf" size="14" /></td></tr>
+					<tr><td colspan="2"><input type="submit" name="envio1" value="Enviar" /></td></tr>
+				</table>
+			</form>
+		</div>
 		<a href="logout.php">Voltar</a>
 	</div>
 </body>

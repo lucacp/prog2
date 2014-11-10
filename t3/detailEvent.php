@@ -30,7 +30,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container">
 		<?php include_once '../localImages.php'; echo '<img src="'.$InLocal.$rows['nome'].'" /><br />';?>
 		<span>Nome do Evento:</span>
 		<?php echo '<span>'.$rows['nome'].'</span><br />'; ?>

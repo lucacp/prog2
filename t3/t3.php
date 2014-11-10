@@ -25,21 +25,27 @@
 		<script src="../jquery.min.js"></script>
 	</head>
 	<body>
-		<div class="container-fluid">
+		<div class="container">
 			<div class="eventos">
 				<h1 id="tit">Eventos</h1>
 				<?php
 				include '../localImages.php';
 				$rows=mysql_fetch_assoc($result);
-				for($i=1;$rows&&$i<5;$i++){
+				for($i=1;$rows;$i++){
 					echo '<div class="ev'.$i.'"><a href="detailEvent.php?event='.$rows['eid'].'"><img src="'.$InLocal.$rows['nome'].'" /></a></div>';
 					$rows=mysql_fetch_assoc($result);
+					if ($i==3) {
+						$i=0;
+					};
 				};
 				include_once '../dataout.php';
 				?>
 			</div>
 			<div>
 				<a href="crEvent.php">Criar Novo Evento</a>
+			</div>
+			<div>
+				<a href="altUser.php">Alterar Perfil</a>
 			</div>
 			<div class="log">
 				<a href="logout.php">Sair.</a>

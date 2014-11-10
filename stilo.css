@@ -4,14 +4,17 @@
 	background-color: #f0f0f0;
 }
 #cabeca{
-	position: absolute;
+	position: relative;
 	right:0px;
+	width: auto;
+	height: auto;
+	clear: both;
 }
 .eventos{
 	position: relative;
 	border: outset;
-	width: 500px;
-	height: 400px;
+	width: auto;
+	height: auto;
 	background-color: #f0f0f0;
 
 }
@@ -44,5 +47,5 @@ img{
 .log{
 	position: relative;
 	width: 40px;
-	border: inset;
+	border: outset;
 }
