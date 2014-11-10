@@ -15,7 +15,7 @@
 		include_once '../database.php';
 		$database="eventbase";
 		mysql_select_db($database);
-		$query="SELECT `id`,`nome`,`senha`,`nivel` FROM `usuario` WHERE `nome`='$login' AND `senha`=\'MD5($pass)\';";
+		$query="SELECT `id`,`nome`,`senha`,`nivel` FROM `usuario` WHERE `nome`='$login' AND `senha`=MD5('$pass');";
 		$result=mysql_query($query,$csql);
 		$rows=mysql_fetch_assoc($result);
 		if($rows>0){

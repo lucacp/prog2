@@ -19,7 +19,7 @@
 		if($rows>0){
 			$_SESSION['usuar']=$rows['nome'];
 			$_SESSION['nivel']=$rows['nivel'];
-			header('location:t3.php');
+			header('location:t3/t3.php');
 		}else{
 			$_SESSION['erro']=4;
 			
@@ -35,6 +35,9 @@
 		$query="SELECT `nome` FROM `evento` where `nivel`>='2';";
 		$result=mysql_query($query,$csql);	
 	};
+	function alerta($id){
+		echo '<span class="">'.$id."</span>";
+	}
 	
 ?>
 <!DOCTYPE html>
@@ -48,37 +51,27 @@
 		<script src="jquery.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$('input').focus(function(){
-					$(this).css("background-color","ff0000");
+				$('#loginForm').click(function(){
+					
+					$('#loginForm1').load('index1.php');
 				});
-				$('input').blur(function(){
-					$(this).css("background-color","ffffff")
+				$('.close').click(function(){
+					$('#loginForm1').close('index1.php');
 				});
-				function alerta(id){
-					if (id==4) {
-						alert("Senha Incorreta");
-					};
-				}
 			});
 		</script>
 	</head>
 	<body>
 		<div class="container">
 			<div id="cabeca">
-				<a href="t3/signup.php">Cadastre-se</a>
-				<form method="post" action="" onSubmit="return testValid(this)">
-					<div><?php if (isset($_SESSION['erro'])) {
+				<div id="loginForm1" class="container"><?php if (isset($_SESSION['erro'])) {
 					if ($_SESSION['erro']==4) {
 						$i=$_SESSION['erro'];
-						function alerta($i);
+						alerta($i);
 					};
-				}?></div>
-					<span>Login:</span>
-					<input type="text" id="logi" name="login" size="8" class="validate[required]" />
-					<span>Senha:</span>
-					<input type="password" name="pass" size="10" />
-					<input type="submit" name="envio" value="Enviar" />
-				</form>
+				}?>
+				</div>	
+				<button id="loginForm">Logar</button>
 			</div>
 			<div class="eventos">
 				<?php if (isset($_GET['event'])) {

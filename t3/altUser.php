@@ -27,9 +27,9 @@
 			$rows=mysql_fetch_assoc($result);
 			if ($rows>0) {
 				$user=$rows['id'];
-				$query1="UPDATE `usuario` SET `senha`=MD5($passN1) WHERE `id`='$user';";
+				$query1="UPDATE `usuario` SET `senha`=MD5(\'$passN1\') WHERE `id`='$user';";
 				$result1=mysql_query($query1."END;",$csql);
-				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$user' and `senha`=\'MD5($passN1)\';";
+				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$user' and `senha`=MD5(\'$passN1\');";
 				$result=mysql_query($query,$csql);
 				$rows2=mysql_fetch_assoc($result);
 				if ($rows2>0) {
@@ -100,7 +100,7 @@
 							echo 'Erro na Busca';
 						}
 					}
-					echo '<input type="text" name="user" value="'.$_SESSION['usuar'].'" />';?>
+					echo '<input type="hidden" name="user" value="'.$_SESSION['usuar'].'" />';?>
 					<h1>Alterar Senha:</h1><br />
 					<label for="old">Senha Atual:</label>
 					<input type="password" id="old" size="31" name="old0" /><br />
