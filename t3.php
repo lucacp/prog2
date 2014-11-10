@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if (isset($_POST['envio'])) {
+	if (isset($_GET['envio'])) {
 		$login=$_POST['login'];
 		$pass=$_POST['pass'];
 		if(!isset($login)){

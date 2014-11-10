@@ -18,7 +18,8 @@
     <script type="text/javascript">
       $(document).ready(function(){
           $('.close').click(function(){
-            $('body').load('t3.php');
+
+            $('body').load('t3.php?envio=1');
           });
       });
     </script>
@@ -33,7 +34,7 @@
           <h1 class="text-center">Entrar</h1>
       </div>
       <div class="modal-body">
-          <form class="form col-md-12 center-block" method="post" action="t3.php" >
+          <form class="form col-md-12 center-block" method="post" action="t3.php?envio=1" >
             <div class="form-group">
               <input type="text" class="form-control input-lg" placeholder="Usuario/Email" name="login">
             </div>
