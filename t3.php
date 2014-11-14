@@ -24,6 +24,8 @@
 			$_SESSION['erro']=4;
 			
 		}
+	}else{
+		unset($_SESSION['erro']);
 	};
 	if (isset($_SESSION['usuario'])) {
 		header('location:t3/index.php');
@@ -32,11 +34,12 @@
 		include_once 'database.php';
 		$database="eventbase";
 		mysql_select_db($database);
-		$query="SELECT `nome` FROM `evento` where `nivel`>='2';";
-		$result=mysql_query($query,$csql);	
+		$query="SELECT `nome` FROM `evento` where `nivel`>'1';";
+		$result=mysql_query($query,$csql);
 	};
 	function alerta($id){
-		echo '<span class="">'.$id."</span>";
+		if($id==4)
+		echo '<span class="red">Senha Incorreta.</span>';
 	}
 	
 ?>
@@ -53,10 +56,7 @@
 			$(document).ready(function(){
 				$('#loginForm').click(function(){
 					
-					$('#loginForm1').load('index1.php');
-				});
-				$('.close').click(function(){
-					$('#loginForm1').close('index1.php');
+					$('body').load('index1.php');
 				});
 			});
 		</script>
@@ -91,7 +91,7 @@
 					
 					if($_SESSION['view']==1){
 						for($i=1;$rows&&$i<5;$i++){
-							echo '<div class="ev'.$i.'"><a href="?event='.$i.'"><img src="'.$OutLocal.$rows['nome'].'" /></a></div>';
+							echo '<div class="ev1"><a href="?event='.$i.'"><img src="'.$OutLocal.$rows['nome'].'" /></a></div>';
 							$rows=mysql_fetch_assoc($result);
 						};
 					}

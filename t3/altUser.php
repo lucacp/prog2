@@ -22,14 +22,14 @@
 			include_once '../database.php';
 			$database="eventbase";
 			mysql_select_db($database);
-			$query="SELECT `id` FROM `usuario` WHERE nome='$user';";
+			$query="SELECT `id` FROM `usuario` WHERE `nome`='$user';";
 			$result=mysql_query($query,$csql);
 			$rows=mysql_fetch_assoc($result);
 			if ($rows>0) {
 				$user=$rows['id'];
-				$query1="UPDATE `usuario` SET `senha`=MD5(\'$passN1\') WHERE `id`='$user';";
+				$query1="UPDATE `usuario` SET `senha`='$passN1' WHERE `id`='$user';";
 				$result1=mysql_query($query1."END;",$csql);
-				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$user' and `senha`=MD5(\'$passN1\');";
+				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$user' and `senha`='$passN1';";
 				$result=mysql_query($query,$csql);
 				$rows2=mysql_fetch_assoc($result);
 				if ($rows2>0) {

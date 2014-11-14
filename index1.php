@@ -19,7 +19,7 @@
       $(document).ready(function(){
           $('.close').click(function(){
 
-            $('body').load('t3.php?envio=1');
+            $('body').load('t3.php');
           });
       });
     </script>
@@ -42,7 +42,7 @@
               <input type="password" class="form-control input-lg" placeholder="Senha" name="pass">
             </div>
             <div class="form-group">
-              <button class="btn btn-primary btn-lg btn-block">Sign In</button>
+              <button class="btn btn-primary btn-lg btn-block" id="logi">Sign In</button>
               <span class="pull-right"><a href="t3/signup.php">Register</a></span>
             </div>
           </form>
