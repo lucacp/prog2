@@ -1,8 +1,8 @@
 <?php 
 	$host="localhost";
-	$user="root";
-	$pass="";
-	$csql=mysql_connect($host,$user,$pass);
+	$userMyserv="root";
+	$passWords="";
+	$csql=mysql_connect($host,$userMyserv,$passWords);
 	if (mysqli_connect_errno())
 	{
 		echo 'A coneção com o DB não foi sucedida';

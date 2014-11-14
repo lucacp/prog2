@@ -1,45 +1,49 @@
 <?php
 	session_start();
-	if (isset($_GET['envio'])) {
-		$login=$_POST['login'];
-		$pass=$_POST['pass'];
-		if(!isset($login)){
-			$_SESSION['erro']=1;
-		}
-		if(!isset($pass)){
-			$_SESSION['erro']=2;
-		}
-		include_once 'database.php';
-		$database="eventbase";
-		mysql_select_db($database);
-		$query="SELECT `id`,`nome`,`senha`,`nivel` FROM `usuario` WHERE `nome`='$login' AND `senha`=MD5('$pass');";
-		$result=mysql_query($query,$csql);
-		$rows=mysql_fetch_assoc($result);
-		include_once 'dataout.php';
-		if($rows>0){
-			$_SESSION['usuar']=$rows['nome'];
-			$_SESSION['nivel']=$rows['nivel'];
-			header('location:t3/t3.php');
-		}else{
-			$_SESSION['erro']=4;
-			
-		}
-	}else{
-		unset($_SESSION['erro']);
-	};
-	if (isset($_SESSION['usuario'])) {
+	if (isset($_SESSION['usuar'])) {
 		header('location:t3/index.php');
 	}
 	else{
-		include_once 'database.php';
+		if (isset($_GET['envio'])) {
+			$login=$_POST['login'];
+			$pass1=$_POST['pass'];
+			if($login==""||$login==null){
+				$_SESSION['erro']=1;
+			}
+			echo $login."ss";
+			if($pass1==""||$pass1==null){
+				$_SESSION['erro']=2;
+			}
+			echo $pass1."se";
+			include 'database.php';
+			$database="eventbase";
+			mysql_select_db($database);
+			$query2="SELECT `id`,`nome`,`senha`,`nivel` FROM `usuario` WHERE `nome`='$login' AND `senha`='$pass1';";
+			$result2=mysql_query($query2,$csql);
+			$rows1=mysql_fetch_assoc($result2);
+			include 'dataout.php';
+			if($rows1>0){
+				$_SESSION['usuar']=$rows1['id'];
+				$_SESSION['nivel']=$rows1['nivel'];
+				header('location:t3/t3.php');
+			}else{
+				$_SESSION['erro']=4;
+				
+			}
+		}else{
+			unset($_SESSION['erro']);
+		};
+	
+	
+		include 'database.php';
 		$database="eventbase";
 		mysql_select_db($database);
-		$query="SELECT `nome` FROM `evento` where `nivel`>'1';";
+		$query="SELECT `nome` FROM `evento` where `nivel`>='2';";
 		$result=mysql_query($query,$csql);
 	};
 	function alerta($id){
 		if($id==4)
-		echo '<span class="red">Senha Incorreta.</span>';
+		echo '<span>Senha Incorreta.</span>';
 	}
 	
 ?>
@@ -100,7 +104,7 @@
 					};
 
 				};
-				include_once 'dataout.php';
+				include 'dataout.php';
 
 				?>
 			</div>

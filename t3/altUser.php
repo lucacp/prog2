@@ -8,9 +8,9 @@
 	};
 	if (isset($_POST['envio'])) {
 		unset($_SESSION['erro']);
-		$user=$_POST['user'];
-		if ($user==""||$user==null) {
-			$user=$_SESSION['usuar'];
+		$useri=$_POST['user'];
+		if ($useri==""||$useri==null||$useri!=$_SESSION['usuar']) {
+			$useri=$_SESSION['usuar'];
 		};
 		$passA=$_POST['old0'];
 		$passN1=$_POST['old1'];
@@ -22,14 +22,15 @@
 			include_once '../database.php';
 			$database="eventbase";
 			mysql_select_db($database);
-			$query="SELECT `id` FROM `usuario` WHERE `nome`='$user';";
-			$result=mysql_query($query,$csql);
-			$rows=mysql_fetch_assoc($result);
+			//echo $useri;
+			$query3="SELECT `id`,`nome`,`nivel` FROM `usuario` WHERE `id`='$useri';";
+			$result1=mysql_query($query3,$csql);
+			$rows=mysql_fetch_assoc($result1);
 			if ($rows>0) {
 				$user=$rows['id'];
-				$query1="UPDATE `usuario` SET `senha`='$passN1' WHERE `id`='$user';";
-				$result1=mysql_query($query1."END;",$csql);
-				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$user' and `senha`='$passN1';";
+				$query1="UPDATE `usuario` SET `senha`='$passN1' WHERE `id`='$useri';";
+				$result1=mysql_query($query1,$csql);
+				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `id`='$useri' and `senha`='$passN1';";
 				$result=mysql_query($query,$csql);
 				$rows2=mysql_fetch_assoc($result);
 				if ($rows2>0) {

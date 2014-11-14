@@ -34,15 +34,15 @@
           <h1 class="text-center">Entrar</h1>
       </div>
       <div class="modal-body">
-          <form class="form col-md-12 center-block" method="post" action="t3.php?envio=1" >
+          <form class="form col-md-12 center-block" method="post" action="t3.php?envio=1">
             <div class="form-group">
-              <input type="text" class="form-control input-lg" placeholder="Usuario/Email" name="login">
+              <input type="text" class="form-control input-lg" placeholder="Usuario" name="login">
             </div>
             <div class="form-group">
               <input type="password" class="form-control input-lg" placeholder="Senha" name="pass">
             </div>
             <div class="form-group">
-              <button class="btn btn-primary btn-lg btn-block" id="logi">Sign In</button>
+              <input class="btn btn-primary btn-lg btn-block" id="logi" value="Sign In" type="submit" />
               <span class="pull-right"><a href="t3/signup.php">Register</a></span>
             </div>
           </form>

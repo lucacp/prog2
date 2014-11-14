@@ -20,7 +20,7 @@
 		$rows=mysql_fetch_assoc($result);
 		if($rows>0){
 			include_once '../dataout.php';
-			$_SESSION['usuar']=$rows['nome'];
+			$_SESSION['usuar']=$rows['id'];
 			$_SESSION['nivel']=$rows['nivel'];
 			header('location:t3.php');
 		}
