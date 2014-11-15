@@ -9,9 +9,10 @@
 		include_once '../database.php';
 		$database="eventbase";
 		mysql_select_db($database);
-		$query="SELECT `nome`,`descr` FROM `evento` where `eid`='$ev';";
+		$query="SELECT `nome`,`descr`,`lid` FROM `evento` where `eid`='$ev';";
 		$result=mysql_query($query,$csql);
 		$rows=mysql_fetch_assoc($result);
+
 		include_once '../dataout.php';
 	}
 	else{
@@ -33,7 +34,13 @@
 	<div class="container">
 		<?php include_once '../localImages.php'; echo '<img src="'.$InLocal.$rows['nome'].'" /><br />';?>
 		<span>Nome do Evento:</span>
-		<?php echo '<span>'.$rows['nome'].'</span><br />'; ?>
+		<?php $nom=$rows['nome'];
+		$no=explode(".", $nom);
+		echo '<span>';
+		for($i=0;$no[$i]!=end($no);$i++) { 
+			echo $no[$i]." ";
+		}
+		echo'</span><br />'; ?>
 		<span>Detalhes:</span>
 		<?php echo '<div>'.$rows['descr'].'</div>' ?>
 		<a href="t3.php">Voltar</a>

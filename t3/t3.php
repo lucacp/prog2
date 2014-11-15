@@ -31,7 +31,7 @@
 				<?php
 				include '../localImages.php';
 				$rows=mysql_fetch_assoc($result);
-				for($i=1;$rows;$i++){
+				for($i=1,$max=4;$rows&&$max>=0;$i++,$max--){
 					echo '<div class="ev'.$i.'"><a href="detailEvent.php?event='.$rows['eid'].'"><img src="'.$InLocal.$rows['nome'].'" /></a></div>';
 					$rows=mysql_fetch_assoc($result);
 					if ($i==3) {

@@ -9,6 +9,10 @@
 	if (isset($_POST['submit'])) {
 	$arq=$_POST['nomearq'].".";
 	$descr=$_POST['descr'];
+	$Data=
+	$_POST['dataa']."/"
+	.$_POST['datam']."/"
+	.$_POST['datad'];
   	$Exts = array("gif", "jpeg", "jpg", "png");
 	$temp = explode(".", $_FILES["arquiv"]["name"]);
 	$arq.=$extension = end($temp);
@@ -44,7 +48,7 @@
 				echo 'Evento ja existente.\n Por favor escolha outro nome de evento';
 			}
 			else{
-				$query2="INSERT INTO `evento` values(null,'$arq','$descr','".$_SESSION['nivel']."', null);";
+				$query2="INSERT INTO `evento` values(null,'$arq','$descr','".$_SESSION['nivel']."', null,'$Data');";
 				mysql_query($query2,$csql);
 				$query="SELECT `nome` FROM `evento` where `nome`='".$arq."';";
 				$result=mysql_query($query,$csql);
@@ -65,23 +69,40 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<title>Criar Evento</title>
 
 	</head>
 	<body>
 		<div class="container">
-			<form method="post" action="" name="teste" enctype="multipart/form-data" >
-				<label for="nomeA">Nome do Evento:</label>
-				<input type="text" id="nomeA" name="nomearq" size="20" />
-				<label for="descris">Descrisão do evento: (opcional)</label>
-				<textarea name="descr"></textarea>
-				<span>Enviar Foto do Evento: </span>
-				<input type="file" name="arquiv" required />
-				<input type="submit" name="submit" />
-			</form>
-			<a href="t3.php">Pagina Principal</a>
+			<div class="thumbnail" aria-hidden="true">
+
+				<form class="form col-md-12 center-block" method="post" action="" name="teste" enctype="multipart/form-data" >
+					<h1>Inclusão de Eventos</h1>
+					<div class="form-group">
+						<input type="text" class="form-control input-lg" name="nomearq" placeholder="Nome do Evento" />
+					</div>
+					<div class="form-group">
+						<textarea class="form-control input-lg" placeholder="Descricao do Evento" name="descr"></textarea>
+					</div>
+					<div class="form-group">
+						<span>Enviar Foto do Evento: </span>
+						<input type="file" class="btn btn-primary btn-lg btn-block" value="Select Arquivo" name="arquiv" required />
+					</div>
+					<div class="form-group">
+						<input type="date" class="input-lg" name="datad" placeholder="Dia" />
+						<input type="date" class="input-lg" name="datam" placeholder="Mes" />
+						<input type="date" class="input-lg" name="dataa" placeholder="Ano" />
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary btn-lg btn-block" value="Criar Evento" name="submit" />
+					</div>
+					
+				</form>
+				<a href="t3.php">Pagina Principal</a>
+			</div>
 		</div>
 	</body>
 </html>

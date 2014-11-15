@@ -10,11 +10,11 @@
 			if($login==""||$login==null){
 				$_SESSION['erro']=1;
 			}
-			echo $login."ss";
+			//echo $login."ss";
 			if($pass1==""||$pass1==null){
 				$_SESSION['erro']=2;
 			}
-			echo $pass1."se";
+			//echo $pass1."se";
 			include 'database.php';
 			$database="eventbase";
 			mysql_select_db($database);

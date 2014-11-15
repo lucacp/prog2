@@ -39,7 +39,7 @@
 				$rows2=mysql_fetch_assoc($result2);
 				include_once '../dataout.php';
 				if($rows2>0){
-					$_SESSION['usuar']=$rows2['nome'];
+					$_SESSION['usuar']=$rows2['id'];
 					$_SESSION['nivel']=$rows2['nivel'];
 					header('location:t3.php');
 				};
@@ -97,8 +97,8 @@
 			if (cpf==""||cpf==null) {
 				return "CPF nao pode estar Vazio.\n";
 			}
-			else if (cpf.length<11||cpf.length>11) {
-				return "CPF deve possuir 11 Digitos.\n";
+			else if (cpf.length<11||cpf.length>20) {
+				return "CPF deve possuir 11 ou mais Digitos.\n";
 			};
 			return "";
 		}
@@ -129,19 +129,19 @@
 			echo '<span class="error">Usuario já Cadastrado.</span>';
 		?>
 		<div class="eventos">
-			<form method="post" action="" onsubmit="return valida(this);">
-				<table class="formul">
-					<tr><th colspan="2" ><h1>Registro de Usuario</h1></th></tr>
-					<tr><td class="row"><label for="usuario">Usuario:</label></td><td><input id="usuario" type="text" size="30" name="login" /></td></tr>
-					<tr><td class="row"><label for="senha">Senha:</label></td><td><input type="password" id="senha" name="pass" /></td></tr>
-					<tr><td class="row"><label for="senha">Confirmação de Senha:</label></td><td><input type="password" id="senha" name="pass2" /></td></tr>
-					<tr><td class="row"><label for="emai">E-Mail:</label></td><td><input type="text" id="emai" name="email" size="48" /></td></tr>
-					<tr><td class="row"><label for="cp">CPF ou Numero de Registro:</label></td><td><input type="text" id="cp" name="cpf" size="14" /></td></tr>
-					<tr><td colspan="2"><input type="submit" name="envio1" value="Enviar" /></td></tr>
-				</table>
-			</form>
+			<form class="form col-md-12 center-block" method="post" action="" onsubmit="return valida(this);">
+				
+					<h1>Registro de Usuario</h1>
+					<input class="form-control input-lg" placeholder="Nome" type="text" name="login" />
+					<input type="password" class="form-control input-lg" placeholder="Senha" name="pass" />
+					<input type="password" class="form-control input-lg" placeholder="Confirmacao da Senha" name="pass2" />
+					<input type="text" class="form-control input-lg" placeholder="E-Mail" name="email" />
+					<input type="text" class="form-control input-lg" placeholder="CPF ou Numero de Registro" name="cpf" />
+					<input type="submit" class="btn btn-primary btn-lg btn-block" name="envio1" value="Enviar" />
+				
+			</form>	
+			<a style="padding-left:15px" href="logout.php">Voltar</a>
 		</div>
-		<a href="logout.php">Voltar</a>
 	</div>
 </body>
 </html>
