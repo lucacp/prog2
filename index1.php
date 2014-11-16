@@ -36,10 +36,10 @@
       <div class="modal-body">
           <form class="form col-md-12 center-block" method="post" action="t3.php?envio=1">
             <div class="form-group">
-              <input type="text" class="form-control input-lg" placeholder="Usuario" name="login">
+              <input type="text" class="form-control input-lg" placeholder="Usuario" name="login" required />
             </div>
             <div class="form-group">
-              <input type="password" class="form-control input-lg" placeholder="Senha" name="pass">
+              <input type="password" class="form-control input-lg" placeholder="Senha" name="pass" required />
             </div>
             <div class="form-group">
               <input class="btn btn-primary btn-lg btn-block" id="logi" value="Sign In" type="submit" />

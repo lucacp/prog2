@@ -26,24 +26,34 @@
 <html>
 <head>
 	<title>Detalhes dos Eventos</title>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-16e" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+	<style type="text/css">
+	img{
+		width: auto;
+		height: auto;
+	}
+	</style>	
 </head>
 <body>
 	<div class="container">
-		<?php include_once '../localImages.php'; echo '<img src="'.$InLocal.$rows['nome'].'" /><br />';?>
-		<span>Nome do Evento:</span>
-		<?php $nom=$rows['nome'];
-		$no=explode(".", $nom);
-		echo '<span>';
-		for($i=0;$no[$i]!=end($no);$i++) { 
-			echo $no[$i]." ";
-		}
-		echo'</span><br />'; ?>
-		<span>Detalhes:</span>
-		<?php echo '<div>'.$rows['descr'].'</div>' ?>
-		<a href="t3.php">Voltar</a>
+		<div class="thumbnail">
+			<?php include_once '../localImages.php'; echo '<img src="'.$InLocal.$rows['nome'].'" /><br />';?>
+			<span>Nome do Evento:</span>
+			<?php $nom=$rows['nome'];
+			$no=explode(".", $nom);
+			echo '<span>';
+			for($i=0;$no[$i]!=end($no);$i++) { 
+				if($i!=0)
+					echo '.';
+				echo $no[$i];
+			};
+			echo'</span><br />'; ?>
+			<span>Detalhes:</span>
+			<?php echo '<div>'.$rows['descr'].'</div>' ?>
+			<a href="t3.php">Voltar</a>
+		</div>
 	</div>
 </body>
 </html>
