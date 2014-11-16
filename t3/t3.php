@@ -25,19 +25,25 @@
 		<link rel="stylesheet" type="text/css" href="../css/full-slider.css">
 		<script src="../js/bootstrap.min.js"></script>
 		<script src="../jquery.min.js"></script>
-		
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('.carousel').carousel({
+				interval:'5000';
+			});
+		});
+		</script>
 	</head>
 	<body>
 		<div class="container">
 			<div class="eventos">
 				<h1 id="tit">Eventos</h1>
-				<div id="slid1" class="carousel slide">
+				<div id="carousel" class="carousel slide" data-ride="carousel">
 					<!-- Indicators -->
 					<ol class="carousel-indicators">
-						<li data-target="#slid1" data-slide-to="0" class="active"></li>
-						<li data-target="#slid1" data-slide-to="1"></li>
-						<li data-target="#slid1" data-slide-to="2"></li>
-						<li data-target="#slid1" data-slide-to="3"></li>
+						<li data-target="#carousel" data-slide-to="0" class="active"></li>
+						<li data-target="#carousel" data-slide-to="1"></li>
+						<li data-target="#carousel" data-slide-to="2"></li>
+						<li data-target="#carousel" data-slide-to="3"></li>
 					</ol>
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner">
@@ -48,16 +54,16 @@
 						for($i=1,$max=4;$rows&&$max!=0;$i++,$max--) {
 							if($max!=4)
 								echo '<div class="item">';
-							echo '<a href="detailEvent.php?event='.$rows['eid'].'"><img class="fill" src="'.$InLocal.$rows['nome'].'"  /></a>';
+							echo '<img class="fill" src="'.$InLocal.$rows['nome'].'" alt="Slide '.$i.'" />';
 							$nom=$rows['nome'];
 							$no=explode(".", $nom);
-							echo '<div class="carousel-caption"><h3>';
+							echo '<div class="carousel-caption"><a href="detailEvent.php?event='.$rows['eid'].'"><h3>';
 							for($i2=0;$no[$i2]!=end($no);$i2++) {
 								if($i2!=0)
 									echo '.';
 								echo $no[$i2];
 							};
-							echo '</h3></div>';
+							echo '</h3></a></div></div>';
 							$rows=mysql_fetch_assoc($result);
 							if ($i==3) {
 								$i=0;
@@ -68,10 +74,10 @@
 					</div>
 					
 					<!-- Controls -->
-					<a class="left carousel-control" href="#slid1" role="button" data-slide="prev">
+					<a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
 						<span class="glyphicon glyphicon-chevron-left"></span>
 					</a>
-					<a class="right carousel-control" href="#slid1" role="button" data-slide="next">
+					<a class="right carousel-control" href="#carousel" role="button" data-slide="next">
 						<span class="glyphicon glyphicon-chevron-right"></span>
 					</a>
 				</div>
@@ -85,11 +91,7 @@
 			<div class="log">
 				<a href="logout.php">Sair.</a>
 			</div>
-			<script type="text/javascript">
-		$('.carousel').carousel({
-			interval:10000;
-		});
-		</script>
+			
 		</div>
 	</body>
 </html>
