@@ -62,6 +62,9 @@
 				<a href="crEvent.php">Criar Novo Evento</a>
 			</div>
 			<div>
+				<a href="crLocal.php">Criar Novo Local</a>
+			</div>
+			<div>
 				<a href="altUser.php">Alterar Perfil</a>
 			</div>
 			<div class="log">

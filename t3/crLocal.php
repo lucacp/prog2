@@ -12,6 +12,7 @@
   	$num=$_POST['nume'];
   	$bair=$_POST['nomebai'];
   	$cep=$_POST['numcep'];
+  	$capac=$_POST['numcap'];
   	$nomeArq=$arq.".";
   	$Exts = array("gif", "jpeg", "jpg", "png");
 	$temp = explode(".", $_FILES["arquiv"]["name"]);
@@ -48,9 +49,9 @@
 				echo 'Local ja existente.\n Por favor escolha outro nome de Local';
 			}
 			else{
-				$query2="INSERT INTO `local` values(null,'$arq','$descr','".$_SESSION['nivel']."', null);";
+				$query2="INSERT INTO `local` values(null,'$arq','$rua','$num','$bair','$cep',$cap,'$nomeArq');";
 				mysql_query($query2,$csql);
-				$query="SELECT `nome` FROM `evento` where `nome`='".$arq."';";
+				$query="SELECT `nomel` FROM `local` where `nome`='$arq';";
 				$result=mysql_query($query,$csql);
 				if($rows=mysql_fetch_assoc($result)){
 					echo 'Local Cadastrado com Sucesso';

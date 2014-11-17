@@ -13,54 +13,22 @@
 	$_POST['dataa']."/"
 	.$_POST['datam']."/"
 	.$_POST['datad'];
-  	$Exts = array("gif", "jpeg", "jpg", "png");
-	$temp = explode(".", $_FILES["arquiv"]["name"]);
-	$arq.=$extension = end($temp);
-	if ((($_FILES["arquiv"]["type"] == "image/gif")
-		|| ($_FILES["arquiv"]["type"] == "image/jpeg")
-		|| ($_FILES["arquiv"]["type"] == "image/jpg")
-		|| ($_FILES["arquiv"]["type"] == "image/png"))
-		&& in_array($extension, $Exts))
-	{
-		$ext=explode("/", $_FILES["arquiv"]["type"]);
-		$Ext=end($ext);
-		if ($_FILES["arquiv"]["error"] > 0)
-	  	{
-	 	 	echo "Error: " . $_FILES["arquiv"]["error"] . "<br>";
-		}
-		else
-		{
-			if (file_exists("upload/" . $arq ))
-		    {
-		    	//echo "Evento ja estava no cadastro";
-		    }
-		    else
-		    {
-			    move_uploaded_file($_FILES["arquiv"]["tmp_name"],
-			    "upload/".$arq);
-			};
-			include_once '../database.php';
-			$database="eventbase";
-			mysql_select_db($database);
-			$query="SELECT `nome` FROM `evento` where `nome`='$arq';";
-			$result=mysql_query($query,$csql);
-			if($rows=mysql_fetch_assoc($result)){
-				echo 'Evento ja existente.\n Por favor escolha outro nome de evento';
-			}
-			else{
-				$query="SELECT `nome` FROM `evento` where `nome`='".$arq."';";
-				$result=mysql_query($query,$csql);
-				if($rows=mysql_fetch_assoc($result)){
-					echo 'Evento Cadastrado com Sucesso';
-				};
-			};
-			include_once '../dataout.php';
-		};
+	include_once '../database.php';
+	$database="eventbase";
+	mysql_select_db($database);
+	$query="SELECT `nome` FROM `evento` where `nome`='$arq';";
+	$result=mysql_query($query,$csql);
+	if($rows=mysql_fetch_assoc($result)){
+		echo 'Evento ja existente.\n Por favor escolha outro nome de evento';
 	}
-	else
-	{
-		echo "arquivo não está com uma extenção permitida";
+	else{
+		$query="SELECT `nome` FROM `evento` where `nome`='".$arq."';";
+		$result=mysql_query($query,$csql);
+		if($rows=mysql_fetch_assoc($result)){
+			//echo 'Evento Cadastrado com Sucesso';
+		};
 	};
+	include_once '../dataout.php';
 }
 ?>
 <!DOCTYPE html>
@@ -103,8 +71,8 @@
 							echo '<h2>Nenhum Evento Foi Encontrado.</h2>';
 						}
 						else{
-							
-							
+
+
 						}
 					}
 				echo '</div>';
