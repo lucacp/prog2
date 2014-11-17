@@ -95,7 +95,7 @@
 					
 					if($_SESSION['view']==1){
 						for($i=1;$rows&&$i<5;$i++){
-							echo '<div class="ev1"><a href="?event='.$i.'"><img src="'.$OutLocal.$rows['nome'].'" /></a></div>';
+							echo '<div class="ev1"><a href="?event='.$i.'"><img class="img-circle" src="'.$OutLocal.$rows['nome'].'" /></a></div>';
 							$rows=mysql_fetch_assoc($result);
 						};
 					}

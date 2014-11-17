@@ -30,16 +30,22 @@ img{
 	position: relative;
 	margin-left: 10px;
 	display: inline;
+	width: auto;
+	height: 100px;
 }
 .ev2{
 	position: relative;
 	margin-left: 20px;
 	display: inline;
+	width: auto;
+	height: 100px;
 }
 .ev3{
 	position: relative;
 	margin-left: 30px;
 	display: inline;
+	width: auto;
+	height: 100px;
 }
 #signup{
 	position: relative;
