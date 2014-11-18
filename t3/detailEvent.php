@@ -9,7 +9,7 @@
 		include_once '../database.php';
 		$database="eventbase";
 		mysql_select_db($database);
-		$query="SELECT `nome`,`descr`,`lid` FROM `evento` where `eid`='$ev';";
+		$query="SELECT `nome`,`descr`,`date`,`lid` FROM `evento` where `eid`='$ev';";
 		$result=mysql_query($query,$csql);
 		$rows=mysql_fetch_assoc($result);
 
@@ -39,19 +39,28 @@
 <body>
 	<div class="container">
 		<div class="thumbnail">
-			<?php include_once '../localImages.php'; echo '<img src="'.$InLocal.$rows['nome'].'" /><br />';?>
-			<span>Nome do Evento:</span>
+			<?php include_once '../localImages.php'; echo '<div class="fill text-center"><img class="fill" src="'.$InLocal.$rows['nome'].'" /></div>';?>
+			<div class="thumbnail fill"><span>Nome do Evento:</span>
 			<?php $nom=$rows['nome'];
 			$no=explode(".", $nom);
-			echo '<span>';
+			echo '<h3 class="text-center">';
 			for($i=0;$no[$i]!=end($no);$i++) { 
 				if($i!=0)
 					echo '.';
 				echo $no[$i];
 			};
-			echo'</span><br />'; ?>
-			<span>Detalhes:</span>
-			<?php echo '<div>'.$rows['descr'].'</div>' ?>
+			echo'</h3></div>'; ?>
+			<div class="fill thumbnail"><span>Detalhes:</span>
+			<?php echo '<h3 class="text-center">'.$rows['descr'].'</h3></div>'; ?>
+			<div class="thumbnail"><span>Data do Evento:</span>
+			<?php 	$data=$rows['date'];
+			$data2=explode("-", $data);
+			$ano=$data2[0];
+			$mes=$data2[1];
+			$dia=$data2[2];
+			echo '<h3 class="text-center">'.$dia.'/'.$mes.'/'.$ano.'</h3></div>'; ?>
+			</div>
+
 			<a href="t3.php">Voltar</a>
 		</div>
 	</div>

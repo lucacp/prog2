@@ -7,28 +7,45 @@
 		header('location:t3.php');
 	}
 	if (isset($_POST['submit'])) {
-	$arq=$_POST['nomearq'].".";
+	$query="SELECT * FROM `evento` WHERE ";
+	$arq=$_POST['nomearq'];
+	if($arq==""||$arq==null){
+		$_SESSION['busca1']=0;
+	}
+	else
+		$query.="`nome` like '$arq' ";
 	$descr=$_POST['descr'];
+	if($descr==""||$descr==null){
+		$_SESSION['busca2']=0;
+	}
+	else
+		$query.="`descr` like '$descr' ";
+	$tipo=$_POST['datat'];
+
 	$Data=
 	$_POST['dataa']."/"
 	.$_POST['datam']."/"
 	.$_POST['datad'];
+	if($Data=="//"||$Data==null||$Data==""||$tipo==""||$tipo==null){
+		$_SESSION['busca3']=0;
+	}
+	else
+		$query.="`date`".$tipo."'$Data' ";
+
 	include_once '../database.php';
 	$database="eventbase";
 	mysql_select_db($database);
-	$query="SELECT `nome` FROM `evento` where `nome`='$arq';";
+	$query.=";";
 	$result=mysql_query($query,$csql);
-	if($rows=mysql_fetch_assoc($result)){
-		echo 'Evento ja existente.\n Por favor escolha outro nome de evento';
+	$rows=mysql_fetch_assoc($result);
+	if($rows>0){
+		$_SESSION['busca']=1;
 	}
 	else{
-		$query="SELECT `nome` FROM `evento` where `nome`='".$arq."';";
-		$result=mysql_query($query,$csql);
-		if($rows=mysql_fetch_assoc($result)){
-			//echo 'Evento Cadastrado com Sucesso';
-		};
+		$_SESSION['busca']=0;
+		include_once '../dataout.php';
 	};
-	include_once '../dataout.php';
+	
 }
 ?>
 <!DOCTYPE html>
@@ -38,14 +55,14 @@
 		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>Criar Evento</title>
+		<title>Procura Eventos</title>
 
 	</head>
 	<body>
 		<div class="container">
 			<div class="thumbnail" aria-hidden="true">
 
-				<form class="form col-md-12 center-block" method="post" action="" name="teste" enctype="multipart/form-data" >
+				<form class="" method="post" action="" name="teste" enctype="multipart/form-data" >
 					<h1>Procura de Eventos</h1>
 					<div class="form-group">
 						<input type="text" class="form-control input-lg" name="nomearq" placeholder="Nome do Evento" />
@@ -54,6 +71,15 @@
 						<textarea class="form-control input-lg" placeholder="Descricao do Evento" name="descr"></textarea>
 					</div>
 					<div class="form-group">
+
+						<select name="datat">
+							<option value="">Selecione</option>
+							<option value='='>Igual</option>
+							<option value=">">Após de</option>
+							<option value=">=">Desde</option>
+							<option value="<">Antes de</option>
+							<option value="<=">Até</option>
+						</select>
 						<input type="date" class="input-lg" name="datad" placeholder="Dia" />
 						<input type="date" class="input-lg" name="datam" placeholder="Mes" />
 						<input type="date" class="input-lg" name="dataa" placeholder="Ano" />
@@ -69,10 +95,15 @@
 					if (isset($_SESSION['busca'])) {
 						if ($_SESSION['busca']==0) {
 							echo '<h2>Nenhum Evento Foi Encontrado.</h2>';
+							
 						}
 						else{
-
-
+							echo '<div class="fill>';
+							for ($i2=0;$rows[$i2]; $i2++) { 
+							 	echo '<h3>'.$rows[$i2].'</h3>';
+							};
+							echo '</div>';
+							include_once '../dataout.php';
 						}
 					}
 				echo '</div>';

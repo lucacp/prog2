@@ -13,6 +13,8 @@
   	$bair=$_POST['nomebai'];
   	$cep=$_POST['numcep'];
   	$capac=$_POST['numcap'];
+  	$cidad=$_POST['nomcida'];
+  	$uf=$_POST['nomestad'];
   	$nomeArq=$arq.".";
   	$Exts = array("gif", "jpeg", "jpg", "png");
 	$temp = explode(".", $_FILES["arquiv"]["name"]);
@@ -46,15 +48,16 @@
 			$query="SELECT `nomel` FROM `local` where `nomel`='$arq';";
 			$result=mysql_query($query,$csql);
 			if($rows=mysql_fetch_assoc($result)){
-				echo 'Local ja existente.\n Por favor escolha outro nome de Local';
+				echo '<div>Local ja existente.\n Por favor escolha outro nome de Local</div>';
 			}
 			else{
-				$query2="INSERT INTO `local` values(null,'$arq','$rua','$num','$bair','$cep',$cap,'$nomeArq');";
+				$query2="INSERT INTO `local` values(null,'$arq','$rua','$num','$bair','$cep',$capac,'$nomeArq','$cidad','$uf');";
 				mysql_query($query2,$csql);
 				$query="SELECT `nomel` FROM `local` where `nome`='$arq';";
 				$result=mysql_query($query,$csql);
-				if($rows=mysql_fetch_assoc($result)){
-					echo 'Local Cadastrado com Sucesso';
+				$rows=mysql_fetch_assoc($result)
+				if($rows>0){
+					echo '<div>Local Cadastrado com Sucesso</div>';
 				};
 			};
 			include_once '../dataout.php';
@@ -62,7 +65,7 @@
 	}
 	else
 	{
-		echo "arquivo não está com uma extenção permitida";
+		echo "<div>arquivo não está com uma extenção permitida</div>";
 	};
 }
 ?>
@@ -77,7 +80,7 @@
 
 	</head>
 	<body>
-		<div class="modal show" aria-hidden="true">
+		<div class="" aria-hidden="true">
 			<div class="container">
 				<div class="thumbnail">
 					<form class="form col-md-12 center-block" method="post" action="" name="teste" enctype="multipart/form-data" >
@@ -98,7 +101,13 @@
 							<input type="text" class="form-control input-lg" id="nomeA" name="numcep" placeholder="CEP" required />
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control input-lg" id="nomeA" name="numcap" placeholder="Maximo de Pessoas Que Podem Utilizar" required />
+							<input type="text" class="form-control input-lg" id="nomeA" name="numcap" placeholder="Maximo de Pessoas Que Podem Utilizar" />
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control input-lg" id="nomeA" name="nomcida" placeholder="Cidade" />
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control input-lg" id="nomeA" name="nomestad" placeholder="Sigla do Estado (UF)" />
 						</div>
 						<div class="form-group">
 							<span>Enviar Foto do Local: </span>
