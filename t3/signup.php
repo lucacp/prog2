@@ -6,12 +6,14 @@
 		$pass=$_POST['pass'];
 		$email=$_POST['email'];
 		$cpf=$_POST['cpf'];
+		$full=$_POST['full'];
 		if(!isset($login)){
 			$_SESSION['erro']=1;
 		}
 		if(!isset($pass)){
 			$_SESSION['erro']=2;
 		}
+
 		include_once '../database.php';
 		$database="eventbase";
 		mysql_select_db($database);
@@ -32,7 +34,7 @@
 				$_SESSION['erro']=3;
 			}
 			else{
-				$insert="INSERT INTO `usuario` values(null,'$login','$pass',2,'$email','$cpf');";
+				$insert="INSERT INTO `usuario` values(null,'$login','$pass',2,'$email','$cpf','$full');";
 				$result=mysql_query($insert,$csql);
 				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$login' and `senha`='$pass';";
 				$result2=mysql_query($query,$csql);
@@ -132,11 +134,12 @@
 			<form class="form col-md-12 center-block" method="post" action="" onsubmit="return valida(this);">
 				
 					<h1>Registro de Usuario</h1>
-					<input class="form-control input-lg" placeholder="Nome" type="text" name="login" />
-					<input type="password" class="form-control input-lg" placeholder="Senha" name="pass" />
-					<input type="password" class="form-control input-lg" placeholder="Confirmacao da Senha" name="pass2" />
-					<input type="text" class="form-control input-lg" placeholder="E-Mail" name="email" />
-					<input type="text" class="form-control input-lg" placeholder="CPF ou Numero de Registro" name="cpf" />
+					<input class="form-control input-lg" placeholder="Nome de Usuário" type="text" name="login" required />
+					<input type="password" class="form-control input-lg" placeholder="Senha" name="pass" required/>
+					<input type="password" class="form-control input-lg" placeholder="Confirmacao da Senha" name="pass2" required />
+					<input type="text" class="form-control input-lg" placeholder="E-Mail" name="email" required />
+					<input type="text" class="form-control input-lg" placeholder="CPF ou Numero de Registro" name="cpf" required />
+					<input class="form-control input-lg" placeholder="Nome Completo" type="text" name="full" />
 					<input type="submit" class="btn btn-primary btn-lg btn-block" name="envio1" value="Enviar" />
 				
 			</form>	

@@ -47,8 +47,8 @@
 			mysql_select_db($database);
 			$query="SELECT `nomel` FROM `local` where `nomel`='$arq';";
 			$result=mysql_query($query,$csql);
-			if($rows=mysql_fetch_assoc($result)){
-				echo '<div>Local ja existente.\n Por favor escolha outro nome de Local</div>';
+			if(mysql_num_rows($result)>0){
+				$query2="UPDATE `local`"
 			}
 			else{
 				$query2="INSERT INTO `local` values(null,'$arq','$rua','$num','$bair','$cep',$capac,'$nomeArq','$cidad','$uf');";
