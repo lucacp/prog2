@@ -79,7 +79,18 @@
 		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../stilo.css">
 		<meta name="generator" content="Bootply" />
+		<script src="../jquery.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('#divcidad').hide();
+			$('#estad').change(function(){
+				var estado=$('#estad option:selected').text();
+				$('#cidad').load("getcidades.php?uf="+estado);
+				$('#divcidad').show("slow");
+			});
+		});
+		</script>
 		<title>Procura Eventos</title>
 
 	</head>
@@ -109,6 +120,37 @@
 						<input type="date" class="input-lg" name="datam" placeholder="Mes" />
 						<input type="date" class="input-lg" name="dataa" placeholder="Ano" />
 					</div>
+					<div class="form-group">
+						
+							<?php
+								include_once '../database.php';
+								$query1="SELECT `estado` FROM `local`;";
+								$result3=mysql_query($query1,$csql);
+								$rows1=mysql_fetch_assoc($result3);
+								echo '<select id="estad" name="estado"><option value="">Escolha um</option>';
+								for ($i=0; $rows1; $i++) { 
+									
+									if ($i!=0) {
+										if ($uf!=$rows1['estado']) {
+											echo '<option value="'.$rows1['estado'].'">'.$rows1['estado'].'</option>';
+										};
+									}
+									else{
+										echo '<option value="'.$rows1['estado'].'">'.$rows1['estado'].'</option>';
+									};
+									$uf=$rows1['estado'];
+									$rows1=mysql_fetch_assoc($result3);
+								};
+								echo '</select>';
+								include_once '../dataout.php';
+
+							?>
+					</div>
+					<div id="divcidad" class="form-group">
+						<select id="cidad" name="cidade">
+						</select>
+					</div>
+						
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary btn-lg btn-block" value="Procurar Evento" name="submit" />
 					</div>

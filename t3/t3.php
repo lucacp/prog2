@@ -7,9 +7,17 @@
 		include_once '../database.php';
 		$database="eventbase";
 		mysql_select_db($database);
-		$query="SELECT `eid`,`nome` FROM `evento` where `nivel`>='".$_SESSION['nivel']."';";
+		$query="SELECT `eid`,`nome` FROM `evento` WHERE `nivel`>='".$_SESSION['nivel']."';";
 		$result=mysql_query($query,$csql);
-
+		$uid=$_SESSION['usuar'];
+		$query2="SELECT `pid`,`eid` FROM `particip` WHERE `uid`='$uid';";
+		$result2=mysql_query($query2,$csql);
+		if (mysql_num_rows($result2)>0) {
+			$_SESSION['even']=1;
+		}
+		else{
+			$_SESSION['even']=0;
+		};
 	};
 
 
@@ -55,6 +63,13 @@
 							$i=0;
 						};
 					};
+					if (isset($_SESSION['even'])){
+						if ($_SESSION['even']==1) {
+							echo '<div class="fill thumbnail">';
+							
+							echo '</div>';	
+						}
+					}
 					include_once '../dataout.php';
 					?>
 				</div>

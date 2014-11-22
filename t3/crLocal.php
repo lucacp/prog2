@@ -18,7 +18,7 @@
   	$nomeArq=$arq.".";
   	$Exts = array("gif", "jpeg", "jpg", "png");
 	$temp = explode(".", $_FILES["arquiv"]["name"]);
-	$nomeArq.=$extension = end($temp);
+	$nomeArq=$nomeArq . $extension = end($temp);
 	if ((($_FILES["arquiv"]["type"] == "image/gif")
 		|| ($_FILES["arquiv"]["type"] == "image/jpeg")
 		|| ($_FILES["arquiv"]["type"] == "image/jpg")
@@ -48,14 +48,22 @@
 			$query="SELECT `nomel` FROM `local` where `nomel`='$arq';";
 			$result=mysql_query($query,$csql);
 			if(mysql_num_rows($result)>0){
-				$query2="UPDATE `local`"
+				if ($_POST['overwrite']==1) {
+					$query2="UPDATE `local` SET `rua`='$rua',`num`='$num', `bairro`='$bair',`nomei`='$nomeArq',CONVERT(`cidade` as UTF-8)='$cidad' Where `nomel`='$arq'";
+					$result2=mysql_query($query2,$csql);
+					echo '<div class="thumbnail">Local Atualizado Com sucesso.</div>';	
+				}else{
+					echo '<div class="thumbnail">Local ja existente, PorFavor escolha outro nome para o Local.</div>';
+					$rows=mysql_fetch_assoc($result);
+					$_SESSION['localcreat']=$rows['nomel'];
+				};
 			}
 			else{
 				$query2="INSERT INTO `local` values(null,'$arq','$rua','$num','$bair','$cep',$capac,'$nomeArq','$cidad','$uf');";
 				mysql_query($query2,$csql);
 				$query="SELECT `nomel` FROM `local` where `nome`='$arq';";
 				$result=mysql_query($query,$csql);
-				$rows=mysql_fetch_assoc($result)
+				$rows=mysql_fetch_assoc($result);
 				if($rows>0){
 					echo '<div>Local Cadastrado com Sucesso</div>';
 				};
@@ -86,7 +94,10 @@
 					<form class="form col-md-12 center-block" method="post" action="" name="teste" enctype="multipart/form-data" >
 						<h1>Inclusão de Locais</h1>
 						<div class="form-group">
-							<input type="text" class="form-control input-lg" id="nomeA" name="nomelocal" placeholder="Nome do Local" required />
+							<input type="text" class="form-control input-lg" id="nomeA" name="nomelocal" placeholder="Nome do Local" 
+							<?php if (isset($_SESSION['localcreat'])) {
+								echo 'value="'.$_SESSION['localcreat'].'" ';
+							} ?> required />
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control input-lg" id="nomeA" name="nomerua" placeholder="Nome da Rua" />
@@ -109,9 +120,16 @@
 						<div class="form-group">
 							<input type="text" class="form-control input-lg" id="nomeA" name="nomestad" placeholder="Sigla do Estado (UF)" />
 						</div>
+						<div>
+							<span>Deseja Sobrescrever Caso este local já exista?</span>
+							<select name="overwrite">
+								<option value="0">Não</option>
+								<option value="1">Sim</option>
+							</select>	
+						</div>
 						<div class="form-group">
 							<span>Enviar Foto do Local: </span>
-							<input type="file" class="btn btn-primary btn-lg btn-block" value="Select Arquivo" name="arquiv" />
+							<input type="file" class="btn btn-primary btn-lg btn-block" value="Select Arquivo" name="arquiv" required />
 						</div>
 						<div>
 							<input type="submit" value="Enviar" name="submit" />

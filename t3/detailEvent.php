@@ -47,8 +47,9 @@
 <body>
 	<div class="container">
 		<div class="thumbnail">
+			<a href="t3.php">Voltar</a>
 			<?php include_once '../localImages.php'; 
-			echo '<div class="fill text-center"><img class="fill" src="'.$InLocal.$rows['nome'].'" /></div>';?>
+			echo '<div class="thumbnail fill"><img class="fill" src="'.$InLocal.$rows['nome'].'" /></div>';?>
 			<div class="thumbnail fill"><span>Nome do Evento:</span>
 				<?php $nom=$rows['nome'];
 				$no=explode(".", $nom);
@@ -70,7 +71,7 @@
 					$dia=$data2[2];
 					echo '<h3 class="text-center">'.$dia.'/'.$mes.'/'.$ano.'</h3>';
 					if ($rows['date']!=null) {
-						echo '<div><button class="btn btn-primary btn-lg btn-block" aria-hidden="true">Quero Participar</button></div>';
+						echo '<a href=""><button class="btn btn-primary btn-lg btn-block">Quero Participar</button></a>';
 					}
 					 ?>
 				</div>
@@ -100,7 +101,7 @@
 					
 				?>
 			</div>
-			<a href="t3.php">Voltar</a>
+			
 		</div>
 	</div>
 </body>
