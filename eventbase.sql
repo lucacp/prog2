@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2014 at 11:38 AM
+-- Generation Time: Nov 22, 2014 at 01:44 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -34,7 +34,8 @@ CREATE TABLE IF NOT EXISTS `evento` (
   `descr` text,
   `nivel` int(11) NOT NULL,
   `lid` int(11) DEFAULT NULL,
-  `Date` date DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `vagas` int(11) DEFAULT NULL,
   PRIMARY KEY (`eid`),
   KEY `lid` (`lid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
@@ -43,13 +44,13 @@ CREATE TABLE IF NOT EXISTS `evento` (
 -- Dumping data for table `evento`
 --
 
-INSERT INTO `evento` (`eid`, `nome`, `descr`, `nivel`, `lid`, `Date`) VALUES
-(1, 'sakura.gif', 'Evento Teste para começo de sistema', 2, 1, '2014-11-01'),
-(2, 'sakuram.gif', 'Evento teste para começo de sistema', 2, 1, '2014-11-02'),
-(3, 'inou.jpg', 'Evento teste', 2, 2, '2014-10-06'),
-(4, 'precure.jpg', 'evento teste', 2, 2, '2013-02-03'),
-(5, 'good.jpg', 'Evento Teste', 2, 1, '2013-01-09'),
-(6, 'passa.jpg', 'somente teste', 2, 2, '2012-11-06');
+INSERT INTO `evento` (`eid`, `nome`, `descr`, `nivel`, `lid`, `date`, `vagas`) VALUES
+(1, 'sakura.gif', 'Evento Teste para começo de sistema', 2, 1, '2014-11-01', 10),
+(2, 'sakuram.gif', 'Evento teste para começo de sistema', 2, 1, '2014-11-02', 10),
+(3, 'inou.jpg', 'Evento teste', 2, 2, '2014-10-06', 10),
+(4, 'precure.jpg', 'evento teste', 2, 2, '2013-02-03', 10),
+(5, 'good.jpg', 'Evento Teste', 2, 1, '2013-01-09', 10),
+(6, 'passa.jpg', 'somente teste', 2, 2, '2012-11-06', 10);
 
 -- --------------------------------------------------------
 
@@ -76,8 +77,25 @@ CREATE TABLE IF NOT EXISTS `local` (
 --
 
 INSERT INTO `local` (`lid`, `nomel`, `rua`, `num`, `bairro`, `cep`, `capac`, `nomei`, `cidade`, `estado`) VALUES
-(1, 'Centro de Eventos Plinio Arlindo de nes', NULL, NULL, NULL, '89805000', 10000, NULL, 'chapeco', 'sc'),
-(2, 'shopping patio chapeco', 'avenida fernando machado', '4000D', 'Lider', '89805203', 10000, 'shopping patio chapeco.jpg', 'chapeco', 'sc');
+(1, 'Centro de Eventos Plinio Arlindo de nes', NULL, NULL, NULL, '89805000', 10000, NULL, 'Chapecó', 'SC'),
+(2, 'Shopping Patio Chapeco', 'Avenida Fernando Machado', '4000D', 'Lider', '89805203', 10000, 'shopping patio chapeco.jpg', 'Chapecó', 'SC');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `particip`
+--
+
+CREATE TABLE IF NOT EXISTS `particip` (
+  `pid` int(11) NOT NULL AUTO_INCREMENT,
+  `eid` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `entra` time DEFAULT NULL,
+  `saiu` time DEFAULT NULL,
+  PRIMARY KEY (`pid`),
+  KEY `eventId` (`eid`),
+  KEY `UserId` (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -115,6 +133,13 @@ INSERT INTO `usuario` (`id`, `nome`, `senha`, `nivel`, `email`, `cpf`, `fullname
 --
 ALTER TABLE `evento`
   ADD CONSTRAINT `evento_L` FOREIGN KEY (`lid`) REFERENCES `local` (`lid`);
+
+--
+-- Constraints for table `particip`
+--
+ALTER TABLE `particip`
+  ADD CONSTRAINT `FK_usuario_id` FOREIGN KEY (`uid`) REFERENCES `usuario` (`id`),
+  ADD CONSTRAINT `FK_evento_id` FOREIGN KEY (`eid`) REFERENCES `evento` (`eid`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

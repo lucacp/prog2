@@ -15,7 +15,12 @@
 		$lid=$rows['lid'];
 		$query2="SELECT * FROM `local` where `lid`='$lid';";
 		$result2=mysql_query($query2,$csql);
-		$rowsl=mysql_fetch_assoc($result2);
+		if (mysql_num_rows($result2)>0) {
+			$rowsl=mysql_fetch_assoc($result2);
+			$_SESSION['local']=1;
+		}
+		else
+			$_SESSION['local']=0;
 		include_once '../dataout.php';
 	}
 	else{
@@ -63,24 +68,36 @@
 					$ano=$data2[0];
 					$mes=$data2[1];
 					$dia=$data2[2];
-					echo '<h3 class="text-center">'.$dia.'/'.$mes.'/'.$ano.'</h3>'; ?>
+					echo '<h3 class="text-center">'.$dia.'/'.$mes.'/'.$ano.'</h3>';
+					if ($rows['date']!=null) {
+						echo '<div><button class="btn btn-primary btn-lg btn-block" aria-hidden="true">Quero Participar</button></div>';
+					}
+					 ?>
 				</div>
 			</div>
+			
 			<div class="fill thumbnail">
-				<span>Local</span>
 				<?php
 					include_once '../localImages.php';
-					echo '<img class="fill" src="'.$InLocalL.$rowsl['nomei'].'" />';
-					echo '<h3 class="text-center">'
-					.'Nome: '.$rowsl['nomel'].'<br />'
-					.'Rua: '.$rowsl['rua'].'<br />'
-					.'Numero: '.$rowsl['num'].'<br />'
-					.'Bairro: '.$rowsl['bairro'].'<br />'
-					.'CEP: '.$rowsl['cep'].'<br />'
-					.'Capacidade: '.$rowsl['capac'].'<br />'
-					.'Cidade: '.$rowsl['cidade'].'<br />'
-					.'UF: '.$rowsl['estado'].'<br />'.'</h3>';
-					echo '</div>';
+					if (isset($_SESSION['local'])){
+						if ($_SESSION['local']==1) {
+							echo '<span>Local</span><img class="fill" src="'.$InLocalL.$rowsl['nomei'].'" />';
+							echo '<h3 class="text-center">'
+							.'Nome: '.$rowsl['nomel'].'<br />'
+							.'Rua: '.$rowsl['rua'].'<br />'
+							.'Numero: '.$rowsl['num'].'<br />'
+							.'Bairro: '.$rowsl['bairro'].'<br />'
+							.'CEP: '.$rowsl['cep'].'<br />'
+							.'Capacidade: '.$rowsl['capac'].'<br />'
+							.'Cidade: '.$rowsl['cidade'].'<br />'
+							.'UF: '.$rowsl['estado'].'<br />'.'</h3>';
+							echo '</div>';
+						}
+						else{
+							echo '<h1 class="text-center">Local do Evento Não foi Selecionado</h1>';
+						}
+					}
+					
 				?>
 			</div>
 			<a href="t3.php">Voltar</a>

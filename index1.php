@@ -50,7 +50,7 @@
       <div class="modal-footer">
           <div class="col-md-12">
           <button class="close" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		  </div>	
+		      </div>	
       </div>
   </div>
   </div>

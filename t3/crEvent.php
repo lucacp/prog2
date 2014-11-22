@@ -13,6 +13,7 @@
 	$_POST['dataa']."/"
 	.$_POST['datam']."/"
 	.$_POST['datad'];
+	$vagas=$_POST['numvag'];
   	$Exts = array("gif", "jpeg", "jpg", "png");
 	$temp = explode(".", $_FILES["arquiv"]["name"]);
 	$arq.=$extension = end($temp);
@@ -48,7 +49,7 @@
 				echo 'Evento ja existente.\n Por favor escolha outro nome de evento';
 			}
 			else{
-				$query2="INSERT INTO `evento` values(null,'$arq','$descr','".$_SESSION['nivel']."', null,'$Data');";
+				$query2="INSERT INTO `evento` values(null,'$arq','$descr','".$_SESSION['nivel']."', null,'$Data','$vagas');";
 				mysql_query($query2,$csql);
 				$query="SELECT `nome` FROM `evento` where `nome`='".$arq."';";
 				$result=mysql_query($query,$csql);
@@ -82,7 +83,7 @@
 				<form class="form col-md-12 center-block" method="post" action="" name="teste" enctype="multipart/form-data" >
 					<h1>Inclusão de Eventos</h1>
 					<div class="form-group">
-						<input type="text" class="form-control input-lg" name="nomearq" placeholder="Nome do Evento" />
+						<input type="text" class="form-control input-lg" name="nomearq" placeholder="Nome do Evento" required />
 					</div>
 					<div class="form-group">
 						<textarea class="form-control input-lg" placeholder="Descricao do Evento" name="descr"></textarea>
@@ -95,6 +96,9 @@
 						<input type="date" class="input-lg" name="datad" placeholder="Dia" />
 						<input type="date" class="input-lg" name="datam" placeholder="Mes" />
 						<input type="date" class="input-lg" name="dataa" placeholder="Ano" />
+					</div>
+					<div class="form-group">
+						<input type="number" class="form-control input-lg" name="numvag" placeholder="Numero Maximo de Participantes" />
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary btn-lg btn-block" value="Criar Evento" name="submit" />
