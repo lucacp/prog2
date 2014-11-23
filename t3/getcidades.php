@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	if (isset($_GET['uf'])) {
 		$uf=$_GET['uf'];
 		include_once '../database.php';

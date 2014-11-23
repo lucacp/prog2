@@ -4,8 +4,8 @@
 		header('location:../t3.php');
 	}
 	if (isset($_GET['event'])) {
-		$ev=$_GET['event'];
-
+		$_SESSION['evento']=$ev=$_GET['event'];
+		
 		include_once '../database.php';
 		$database="eventbase";
 		mysql_select_db($database);
@@ -29,6 +29,9 @@
 	if (isset($_SESSION['busca'])) {
 		unset($_SESSION['busca']);
 	}
+	
+	
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,17 +44,11 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$('#participar').click(function(){
-			var evento=document.location.search("evento=");
-			alert("eu "+evento);
-			$('#getp').load('getparticip.php?evento'+document.location[ evento[1] ]);
+			$('#getp').load('setparticip.php');
 		});
 	});
 	</script>
 	<style type="text/css">
-	img{
-		width: auto;
-		height: auto;
-	}
 	</style>	
 </head>
 <body>
