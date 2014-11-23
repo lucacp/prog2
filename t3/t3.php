@@ -33,11 +33,6 @@
 		<link rel="stylesheet" type="text/css" href="../css/full-slider.css">
 		<script src="../js/bootstrap.min.js"></script>
 		<script src="../jquery.min.js"></script>
-		<script type="text/javascript">
-		$(document).ready(function(){
-			$('.carousel').carousel( {interval:5000} );
-		});
-		</script>
 	</head>
 	<body>
 		<div class="container">
