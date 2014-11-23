@@ -7,7 +7,6 @@
 		$uf=$_GET['uf'];
 		$query="SELECT `cidade` FROM `local` WHERE `estado`='$uf';";
 		$result2=mysql_query($query,$csql);
-		echo '<option value="">Selecione a Cidade</option>';
 		if (!$result2) {
 			echo '<option value="">Nenhuma Cidade Deste Estado</option>';			
 			exit();

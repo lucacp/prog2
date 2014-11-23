@@ -25,10 +25,10 @@
 	}
 	else{
 		header('location:t3.php');
+	};
+	if (isset($_SESSION['busca'])) {
+		unset($_SESSION['busca']);
 	}
-
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,6 +37,16 @@
 	<meta charset="utf-16e" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+	<script src="../jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#participar').click(function(){
+			var evento=document.location.search("evento=");
+			alert("eu "+evento);
+			$('#getp').load('getparticip.php?evento'+document.location[ evento[1] ]);
+		});
+	});
+	</script>
 	<style type="text/css">
 	img{
 		width: auto;
@@ -71,10 +81,14 @@
 					$dia=$data2[2];
 					echo '<h3 class="text-center">'.$dia.'/'.$mes.'/'.$ano.'</h3>';
 					if ($rows['date']!=null) {
-						echo '<a href=""><button class="btn btn-primary btn-lg btn-block">Quero Participar</button></a>';
+						echo '<button id="participar" class="btn btn-primary btn-lg btn-block">Quero Participar</button>';
 					}
 					 ?>
 				</div>
+				<?php echo '<div id="getp" class="thumbnail"></div>';
+
+
+				?>
 			</div>
 			
 			<div class="fill thumbnail">

@@ -79,32 +79,35 @@
 				$_SESSION['busca4']=4;
 			};
 		};
-		$cidade=$_POST['cidade'];
-		if ($cidade==""||$cidade==null) {
-			$_SESSION['busca5']=0;
-		}
-		else{
-			if ($_SESSION['busca1']==0) {
-				if ($_SESSION['busca2']==0) {
-					if ($_SESSION['busca3']==0) {
+		if (isset($_POST['cidade'])) {
+			$cidade=$_POST['cidade'];
+			if ($cidade==""||$cidade==null) {
+				$_SESSION['busca5']=0;
+			}
+			else{
+				if ($_SESSION['busca1']==0) {
+					if ($_SESSION['busca2']==0) {
+						if ($_SESSION['busca3']==0) {
+								$query.=" OR `cidade`='$cidade' ";
+								$_SESSION['busca5']=2;
+						}
+						else{
 							$query.=" OR `cidade`='$cidade' ";
-							$_SESSION['busca5']=2;
+							$_SESSION['busca5']=3;
+						};
 					}
 					else{
 						$query.=" OR `cidade`='$cidade' ";
-						$_SESSION['busca5']=3;
+						$_SESSION['busca5']=4;
 					};
 				}
 				else{
 					$query.=" OR `cidade`='$cidade' ";
-					$_SESSION['busca5']=4;
+					$_SESSION['busca5']=5;
 				};
-			}
-			else{
-				$query.=" OR `cidade`='$cidade' ";
-				$_SESSION['busca5']=5;
 			};
 		};
+		
 		include_once '../database.php';
 		$database="eventbase";
 		mysql_select_db($database);
@@ -122,6 +125,7 @@
 		else{
 			$_SESSION['busca']=0;
 		};
+		include_once '../dataout.php';
 	};
 
 ?>
@@ -177,6 +181,9 @@
 					<div class="form-group">
 						<label for="estad">Estado:</label>
 							<?php
+								include '../database.php';
+								$database="eventbase";
+								mysql_select_db($database);
 								$query1="SELECT `estado` FROM `local` ;";
 								$result3=mysql_query($query1,$csql);
 								$rows1=mysql_fetch_assoc($result3);
@@ -194,12 +201,14 @@
 									$uf=$rows1['estado'];
 									$rows1=mysql_fetch_assoc($result3);
 								};
+								include '../dataout.php';
 								echo '</select>';
 							?>
 					</div>
 					<div id="divcidad" class="form-group">
 						<label for="cidad">Cidades:</label>
 						<select id="cidad" name="cidade">
+							<option value="">Selecione</option>
 						</select>
 					</div>
 						
@@ -217,6 +226,9 @@
 							
 						}
 						else{
+							include '../database.php';
+							$database="eventbase";
+							mysql_select_db($database);
 							include '../localImages.php';
 							for (;$rows0;) {
 								$nome=explode(".",$rows0['nome']);
@@ -232,8 +244,9 @@
 							};
 							echo '</div>';
 							
+						include '../dataout.php';
 						};
-						include_once '../dataout.php';
+						
 					}
 				echo '</div>';
 				?>
