@@ -53,6 +53,58 @@
 				$_SESSION['busca3']=3;
 			}
 		};
+		$estado=$_POST['estado'];
+		if ($estado==""||$estado==null) {
+			$_SESSION['busca4']=0;
+		}
+		else{
+			if ($_SESSION['busca1']==0) {
+				if ($_SESSION['busca2']==0) {
+					if ($_SESSION['busca3']==0) {
+						$query.=" WHERE `estado`='$estado' ";
+						$_SESSION['busca4']=1;
+					}
+					else{
+						$query.=" OR `estado`='$estado' ";
+						$_SESSION['busca4']=2;
+					};
+				}
+				else{
+					$query.=" OR `estado`='$estado' ";
+					$_SESSION['busca4']=3;
+				};
+			}
+			else{
+				$query.=" OR `estado`='$estado' ";
+				$_SESSION['busca4']=4;
+			};
+		};
+		$cidade=$_POST['cidade'];
+		if ($cidade==""||$cidade==null) {
+			$_SESSION['busca5']=0;
+		}
+		else{
+			if ($_SESSION['busca1']==0) {
+				if ($_SESSION['busca2']==0) {
+					if ($_SESSION['busca3']==0) {
+							$query.=" OR `cidade`='$cidade' ";
+							$_SESSION['busca5']=2;
+					}
+					else{
+						$query.=" OR `cidade`='$cidade' ";
+						$_SESSION['busca5']=3;
+					};
+				}
+				else{
+					$query.=" OR `cidade`='$cidade' ";
+					$_SESSION['busca5']=4;
+				};
+			}
+			else{
+				$query.=" OR `cidade`='$cidade' ";
+				$_SESSION['busca5']=5;
+			};
+		};
 		include_once '../database.php';
 		$database="eventbase";
 		mysql_select_db($database);
@@ -60,14 +112,15 @@
 		unset($_SESSION['busca1']);
 		unset($_SESSION['busca2']);
 		unset($_SESSION['busca3']);
-		$result=mysql_query($query,$csql);
-		$rows=mysql_fetch_assoc($result);
-		if($rows!=null) {
+		unset($_SESSION['busca4']);
+		unset($_SESSION['busca5']);
+		$result0=mysql_query($query,$csql);
+		$rows0=mysql_fetch_assoc($result0);
+		if($rows0!=null) {
 			$_SESSION['busca']=1;
 		}
 		else{
 			$_SESSION['busca']=0;
-			include_once '../dataout.php';
 		};
 	};
 
@@ -84,9 +137,10 @@
 		<script type="text/javascript">
 		$(document).ready(function(){
 			$('#divcidad').hide();
+
 			$('#estad').change(function(){
-				var estado=$('#estad option:selected').text();
-				$('#cidad').load("getcidades.php?uf="+estado);
+				var estados= $("#estad option:selected").text();
+				$("#cidad").load("getcidades.php?uf="+estados);
 				$('#divcidad').show("slow");
 			});
 		});
@@ -121,10 +175,9 @@
 						<input type="date" class="input-lg" name="dataa" placeholder="Ano" />
 					</div>
 					<div class="form-group">
-						
+						<label for="estad">Estado:</label>
 							<?php
-								include_once '../database.php';
-								$query1="SELECT `estado` FROM `local`;";
+								$query1="SELECT `estado` FROM `local` ;";
 								$result3=mysql_query($query1,$csql);
 								$rows1=mysql_fetch_assoc($result3);
 								echo '<select id="estad" name="estado"><option value="">Escolha um</option>';
@@ -142,11 +195,10 @@
 									$rows1=mysql_fetch_assoc($result3);
 								};
 								echo '</select>';
-								include_once '../dataout.php';
-
 							?>
 					</div>
 					<div id="divcidad" class="form-group">
+						<label for="cidad">Cidades:</label>
 						<select id="cidad" name="cidade">
 						</select>
 					</div>
@@ -166,17 +218,17 @@
 						}
 						else{
 							include '../localImages.php';
-							for (;$rows;) {
-								$nome=explode(".",$rows['nome']);
-								echo '<div class="thumbnail"><a href="detailEvent.php?event='.$rows['eid'].'">'.
-								'<img class="img-circle" src="'.$InLocal.$rows['nome'].'" /><h3 class="text-center">';
+							for (;$rows0;) {
+								$nome=explode(".",$rows0['nome']);
+								echo '<div class="thumbnail"><a href="detailEvent.php?event='.$rows0['eid'].'">'.
+								'<img class="img-circle" src="'.$InLocal.$rows0['nome'].'" /><h3 class="text-center">';
 								for($i3=0;$nome[$i3]!=end($nome);$i3++){
 									if($i3!=0)
 										echo '.';
 							 		echo $nome[$i3];
 							 	};
 							 	echo '</h3></a></div>';
-								$rows=mysql_fetch_assoc($result);
+								$rows0=mysql_fetch_assoc($result0);
 							};
 							echo '</div>';
 							
