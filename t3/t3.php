@@ -12,13 +12,18 @@
 		$uid=$_SESSION['usuar'];
 		$query2="SELECT `pid`,`eid` FROM `particip` WHERE `uid`='$uid';";
 		$result2=mysql_query($query2,$csql);
-		if (mysql_num_rows($result2)>0) {
+		$rows5=mysql_fetch_assoc($result2);
+		if ($rows5) {
 			$_SESSION['even']=1;
 		}
 		else{
 			$_SESSION['even']=0;
 		};
 	};
+	if (isset($_SESSION['registro'])) {
+		unset($_SESSION['registro']);
+		
+	}
 
 
 ?>
@@ -60,8 +65,19 @@
 					};
 					if (isset($_SESSION['even'])){
 						if ($_SESSION['even']==1) {
-							echo '<div class="fill thumbnail">';
 							
+							echo '<br /><div class="fill thumbnail">';
+							echo '<h1 class="text-center">Meus Eventos</h1>';
+							for ($i=0; $rows5;$i++) { 
+								echo '<a href="detailEvent.php?event='.$rows5['eid'].'">';
+								$evid=$rows5['eid'];
+								$query4="SELECT `eid`,`nome` FROM `evento` WHERE `eid`='$evid';";
+								$result=mysql_query($query4,$csql);
+								$rows0=mysql_fetch_assoc($result);
+								echo '<img src="'.$InLocal.$rows0['nome'].'" />';
+								$rows5=mysql_fetch_assoc($result2);
+								echo '</a>';
+							};
 							echo '</div>';	
 						}
 					}
@@ -80,6 +96,13 @@
 			<div>
 				<a href="altUser.php">Alterar Perfil</a>
 			</div>
+			<?php 
+				if ($_SESSION['nivel']<2) {
+					echo '<div>'
+					.'<a href="registparticip.php">Registro dos Participantes.</a>'
+					.'</div>';
+				};
+			?>
 			<div class="log">
 				<a href="logout.php">Sair.</a>
 			</div>
