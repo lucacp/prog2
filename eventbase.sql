@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2014 at 01:44 AM
+-- Generation Time: Nov 24, 2014 at 01:23 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `local` (
   `bairro` varchar(20) DEFAULT NULL,
   `cep` varchar(10) NOT NULL,
   `capac` int(11) DEFAULT NULL,
-  `nomei` varchar(40) DEFAULT NULL,
+  `nomei` varchar(50) DEFAULT NULL,
   `cidade` varchar(30) DEFAULT NULL,
   `estado` varchar(2) DEFAULT NULL,
   PRIMARY KEY (`lid`)
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `local` (
 --
 
 INSERT INTO `local` (`lid`, `nomel`, `rua`, `num`, `bairro`, `cep`, `capac`, `nomei`, `cidade`, `estado`) VALUES
-(1, 'Centro de Eventos Plinio Arlindo de nes', NULL, NULL, NULL, '89805000', 10000, NULL, 'Chapecó', 'SC'),
+(1, 'Centro de Eventos Plinio Arlindo de nes', 'Avenida Assis Brasil', '20D', 'Centro', '89805000', 10000, 'Centro de Eventos Plinio Arlindo de nes.jpg', 'Chapecó', 'SC'),
 (2, 'Shopping Patio Chapeco', 'Avenida Fernando Machado', '4000D', 'Lider', '89805203', 10000, 'shopping patio chapeco.jpg', 'Chapecó', 'SC');
 
 -- --------------------------------------------------------
@@ -90,12 +90,19 @@ CREATE TABLE IF NOT EXISTS `particip` (
   `pid` int(11) NOT NULL AUTO_INCREMENT,
   `eid` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
-  `entra` time DEFAULT NULL,
-  `saiu` time DEFAULT NULL,
+  `entra` timestamp NULL DEFAULT NULL,
+  `saiu` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`pid`),
   KEY `eventId` (`eid`),
   KEY `UserId` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `particip`
+--
+
+INSERT INTO `particip` (`pid`, `eid`, `uid`, `entra`, `saiu`) VALUES
+(1, 2, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -121,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nome`, `senha`, `nivel`, `email`, `cpf`, `fullname`) VALUES
-(1, 'ice1life', 'convidado', 1, 'ice0life@gmail.com', '07322812964', 'icelife mayonaka'),
+(1, 'admin', 'convidado', 1, 'ice0life@gmail.com', '07322812964', 'icelife mayonaka'),
 (2, 'convidado', 'convidado', 2, 'test@bol.com.br', '00000000000', 'Sem Nome Real');
 
 --
@@ -138,8 +145,8 @@ ALTER TABLE `evento`
 -- Constraints for table `particip`
 --
 ALTER TABLE `particip`
-  ADD CONSTRAINT `FK_usuario_id` FOREIGN KEY (`uid`) REFERENCES `usuario` (`id`),
-  ADD CONSTRAINT `FK_evento_id` FOREIGN KEY (`eid`) REFERENCES `evento` (`eid`);
+  ADD CONSTRAINT `FK_evento_id` FOREIGN KEY (`eid`) REFERENCES `evento` (`eid`),
+  ADD CONSTRAINT `FK_usuario_id` FOREIGN KEY (`uid`) REFERENCES `usuario` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

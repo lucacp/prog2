@@ -30,7 +30,13 @@
 				echo 'Usuario nao se cadastrou no evento.';
 			}
 			else{
-				$tim=time();
+				$tempo=time("hh-mm-ss")/24;
+				$hour=$tempo/24;
+				$min=$tempo/(24*60);
+				$sec=$tempo/(24*60*60);
+				$timea=$hour.':'.$min.':'.$sec;
+				$pid=$rows4['pid'];
+				$query6="UPDATE `particip` SET `entra`='$timea' WHERE `pid`='$pid';";
 			}
 		}
 	}
@@ -66,9 +72,11 @@
 		<div class="thumbnail">
 			<a href="t3.php">Voltar</a>
 			<form method="post" action="">
-				<?php 
+				<?php
+
 					if (isset($_SESSION['registro'])) {
 						echo '<input name="eventos" value="'.$_SESSION['registro'].'" type="hidden" />';
+						//echo '<input name="tempo" type="timestamp" />';
 						echo '<div class="form-group"><input type="text" class="form-control input-lg" placeholder="Nome do Usuario" name="nameuser" /></div>';
 					}
 					else{
