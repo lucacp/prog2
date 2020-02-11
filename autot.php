@@ -4,6 +4,49 @@
 		<title>Teste</title>
 		<meta charset="UTF-8">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		
+		<style type="text/css">
+			body{
+				background: url("sakura.gif");
+				background-repeat: repeat;
+				overflow: hidden;
+			}
+			#wrapper{
+
+			}
+			img{
+				opacity: 0.7;
+			}
+			#img0{
+				position: absolute;
+				bottom: -700px;
+				right: 10px;
+			}#img1{
+				position: absolute;
+				bottom: -300px;
+				right: 40px;
+			}#img2{
+				position: absolute;
+				bottom: -1000px;
+				left: 60px;
+			}#img3{
+				position: absolute;
+				bottom: -500px;
+				left: 100px;
+			}#img4{
+				position: absolute;
+				bottom: -300px;
+				left: 50px;
+			}#img5{
+				position: absolute;
+				bottom: -1100px;
+				right: 15px;
+			}
+			#upside{
+				/*z-index: 5;*/
+			}
+		</style>
 		<script type="text/javascript">
 			function testNull(id){
 				var x=document.getElementById(id).blur();
@@ -55,67 +98,15 @@
 					return false;
 				}
 			}
-			$(document).ready(function(){
-				
-				$('img').ready(function ani(){
-				var i=$('img');
-				if (i.top<-5) {
-					i.top='vw';
-				};
-				$('img').animate({
-					top:'-=0.05vw'
-				},1);
-				ani();
-				});
-			});
+			
 
 		</script>
-		<style type="text/css">
-			body{
-				background: url("sakura.gif");
-				background-repeat: repeat;
-				overflow: hidden;
-			}
-			#wrapper{
-
-			}
-			img{
-				opacity: 0.7;
-			}
-			#img0{
-				position: absolute;
-				bottom: -700px;
-				right: 10px;
-			}#img1{
-				position: absolute;
-				bottom: -300px;
-				right: 40px;
-			}#img2{
-				position: absolute;
-				bottom: -1000px;
-				left: 60px;
-			}#img3{
-				position: absolute;
-				bottom: -500px;
-				left: 100px;
-			}#img4{
-				position: absolute;
-				bottom: -300px;
-				left: 50px;
-			}#img5{
-				position: absolute;
-				bottom: -1100px;
-				right: 15px;
-			}
-			#upside{
-				/*z-index: 5;*/
-			}
-		</style>
 	</head>
 	<body>
 		<div style="position:relative" id="wrapper">
 			<div id="upside">
 				<table class="signup" border="0" cellpadding="2" cellspacing="5" bgcolor="#fafafa">
+					<tr><td colspan="2"><center>TESTE de Login com javascript animado.</center></td></tr>
 					<th colspan="2" align="center">Signup Form</th>
 					<form method="post" action="" onSubmit="return testeValid(this)">
 						<tr>
@@ -136,6 +127,7 @@
 						</tr>
 						<tr><td colspan="2" align="center"><input type="submit" name="posts" value="Enviar" /></td></tr>
 					</form>
+
 				</table>
 			</div>
 			<img id="img0" class="imgs animado" src="sakuram.gif" />
@@ -149,6 +141,24 @@
 </html>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$(".animado").
-	})
+		var topi = [];
+		var typeSp='vw'
+		topi[0]  = $("#img0").top;
+		topi[1]  = $("#img1").top;
+		topi[2]  = $("#img2").top;
+		topi[3]  = $("#img3").top;
+		topi[4]  = $("#img4").top;
+		topi[5]  = $("#img5").top;
+		function update(){
+			for (var n = 0; n < n.length; n++) {
+				if($("#img"+n).top < 5)
+					$("#img"+n).top = topi[n];
+				$("#img"+n).animate({
+					top:'-=0.05vw'
+				},1);
+			};
+			update();	
+		};
+		update();
+	});
 </script>
