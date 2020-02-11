@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Teste</title>
-		<meta charset="UTF-16LE">
+		<meta charset="UTF-8">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			function testNull(id){
@@ -59,11 +59,11 @@
 				
 				$('img').ready(function ani(){
 				var i=$('img');
-				if (i.top<-10) {
-					i.top=0;
+				if (i.top<-5) {
+					i.top='vw';
 				};
 				$('img').animate({
-					top:'-=0.3px'
+					top:'-=0.05vw'
 				},1);
 				ani();
 				});
@@ -81,7 +81,6 @@
 			}
 			img{
 				opacity: 0.7;
-				z-index: -1;
 			}
 			#img0{
 				position: absolute;
@@ -109,7 +108,7 @@
 				right: 15px;
 			}
 			#upside{
-				z-index: 20;
+				/*z-index: 5;*/
 			}
 		</style>
 	</head>
@@ -139,12 +138,17 @@
 					</form>
 				</table>
 			</div>
-			<img id="img0" class="imgs" src="sakuram.gif" />
-			<img id="img1" class="imgs" src="sakuram.gif" />
-			<img id="img2" class="imgs" src="sakuram.gif" />
-			<img id="img3" class="imgs" src="sakuram.gif" />
-			<img id="img4" class="imgs" src="sakuram.gif" />
-			<img id="img5" class="imgs" src="sakuram.gif" />
+			<img id="img0" class="imgs animado" src="sakuram.gif" />
+			<img id="img1" class="imgs animado" src="sakuram.gif" />
+			<img id="img2" class="imgs animado" src="sakuram.gif" />
+			<img id="img3" class="imgs animado" src="sakuram.gif" />
+			<img id="img4" class="imgs animado" src="sakuram.gif" />
+			<img id="img5" class="imgs animado" src="sakuram.gif" />
 		</div>
 	</body>
 </html>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".animado").
+	})
+</script>
