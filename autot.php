@@ -99,6 +99,44 @@
 				}
 			}
 			
+			$(document).ready(function(){
+/*				topi    = [];
+				topi[0] = $('#img0').top;
+				topi[1] = $('#img1').top;
+				topi[2] = $('#img2').top;
+				topi[3] = $('#img3').top;
+				topi[4] = $('#img4').top;
+				topi[5] = $('#img5').top;*/
+				function update(img){
+					var i = $(img);
+					$(i).animate({top:"-="+(window.innerWidth/2+100)+"px",left:"-="+(Math.cos(($(i).top%360)*Math.PI/180))+"vw"},5000);
+					var n = $(i).top;
+					if( n <= "-15px"){
+						$(i).top += window.outerHeight;
+						$(i).left = Math.random()*window.outerWidth;
+					};
+					update(img);
+				};
+		//		;left:Math.cos(($(img).top%360)*Math.PI/180)*window.innerWidth+$(img).left
+				$('#img0').ready(function(){
+					update("#img0");
+				});
+				/*$('#img1').ready(function(){
+					update("#img1");
+				});
+				$('#img2').ready(function(){
+					update("#img2");
+				});
+				$('#img3').ready(function(){
+					update("#img3");
+				});
+				$('#img4').ready(function(){
+					update("#img4");
+				});
+				$('#img5').ready(function(){
+					update("#img5");
+				});*/
+			});
 
 		</script>
 	</head>
@@ -140,21 +178,3 @@
 
 	</body>
 </html>
-<script type="text/javascript">
-	$(document).ready(function(){
-		
-		function update(){
-			for (var n = 0; n < topi.length; n++) {
-				if($("#img"+n).top < -5)
-					$("#img"+n).top = Math.random()*1000;
-				$("#img"+n).animate({
-					top:-0.1;left:Math.cos(Math.random()*Math.PI/180)+this.left
-				},1);
-			};
-		};
-		$('#img0').ready(function(){
-			update();
-		})
-		$
-	});
-</script>
