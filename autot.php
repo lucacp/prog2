@@ -9,7 +9,7 @@
 		<style type="text/css">
 			body{
 				background: url("sakura.gif");
-				background-repeat: repeat;
+				background-repeat: no-repeat;
 				overflow: hidden;
 			}
 			#wrapper{
@@ -20,27 +20,27 @@
 			}
 			#img0{
 				position: absolute;
-				bottom: -700px;
+				top: 700px;
 				right: 10px;
 			}#img1{
 				position: absolute;
-				bottom: -300px;
+				top: 600px;
 				right: 40px;
 			}#img2{
 				position: absolute;
-				bottom: -1000px;
+				top: 1000px;
 				left: 60px;
 			}#img3{
 				position: absolute;
-				bottom: -500px;
+				top: 500px;
 				left: 100px;
 			}#img4{
 				position: absolute;
-				bottom: -300px;
+				top: 300px;
 				left: 50px;
 			}#img5{
 				position: absolute;
-				bottom: -1100px;
+				top: 1100px;
 				right: 15px;
 			}
 			#upside{
@@ -137,28 +137,24 @@
 			<img id="img4" class="imgs animado" src="sakuram.gif" />
 			<img id="img5" class="imgs animado" src="sakuram.gif" />
 		</div>
+
 	</body>
 </html>
 <script type="text/javascript">
 	$(document).ready(function(){
-		var topi = [];
-		var typeSp='vw'
-		topi[0]  = $("#img0").top;
-		topi[1]  = $("#img1").top;
-		topi[2]  = $("#img2").top;
-		topi[3]  = $("#img3").top;
-		topi[4]  = $("#img4").top;
-		topi[5]  = $("#img5").top;
+		
 		function update(){
-			for (var n = 0; n < n.length; n++) {
-				if($("#img"+n).top < 5)
-					$("#img"+n).top = topi[n];
+			for (var n = 0; n < topi.length; n++) {
+				if($("#img"+n).top < -5)
+					$("#img"+n).top = Math.random()*1000;
 				$("#img"+n).animate({
-					top:'-=0.05vw'
+					top:-0.1;left:Math.cos(Math.random()*Math.PI/180)+this.left
 				},1);
 			};
-			update();	
 		};
-		update();
+		$('#img0').ready(function(){
+			update();
+		})
+		$
 	});
 </script>
