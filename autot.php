@@ -22,26 +22,43 @@
 				position: absolute;
 				top: 700px;
 				right: 10px;
+				transition: transform 10s;
+				animation: animado 10s infinite;
 			}#img1{
 				position: absolute;
 				top: 600px;
 				right: 40px;
+				transition: transform 10s;
+				animation: animado 10s infinite;
 			}#img2{
 				position: absolute;
 				top: 1000px;
 				left: 60px;
+				transition: transform 10s;
+				animation: animado 10s infinite;
 			}#img3{
 				position: absolute;
 				top: 500px;
 				left: 100px;
+				transition: transform 10s;
+				animation: animado 10s infinite;
 			}#img4{
 				position: absolute;
 				top: 300px;
 				left: 50px;
+				transition: transform 10s;
+				animation: animado 10s infinite;
 			}#img5{
 				position: absolute;
 				top: 1100px;
 				right: 15px;
+				transition: transform 10s;
+				animation: animado 10s infinite;
+			}
+			@keyframes animado {
+				0%{transform: translateY(this.top) rotate(0deg);}
+				50%{transform: translateY(this.top/2) rotate(180deg);}
+				100%{transform: translateY("-50px") rotate(0deg);}
 			}
 			#upside{
 				/*z-index: 5;*/
@@ -107,7 +124,7 @@
 				topi[3] = $('#img3').top;
 				topi[4] = $('#img4').top;
 				topi[5] = $('#img5').top;*/
-				function update(img){
+				/*function update(img){
 					$(img).animate({top:"-5vw"},5000,function(){
 						$(this).left-=(Math.cos(($(img).top%360)*Math.PI/180))+"vw";
 						$(this).top-=window.innerWidth/2+100+"px";
@@ -155,7 +172,7 @@
 						update("#img5");
 						$('#img5').css('top','20vw');
 					}
-				});
+				});*/
 
 			});
 
@@ -189,12 +206,12 @@
 
 				</table>
 			</div>
-			<img id="img0" class="imgs animado" src="sakuram.gif" />
-			<img id="img1" class="imgs animado" src="sakuram.gif" />
-			<img id="img2" class="imgs animado" src="sakuram.gif" />
-			<img id="img3" class="imgs animado" src="sakuram.gif" />
-			<img id="img4" class="imgs animado" src="sakuram.gif" />
-			<img id="img5" class="imgs animado" src="sakuram.gif" />
+			<img id="img0" class="imgs" src="sakuram.gif" />
+			<img id="img1" class="imgs" src="sakuram.gif" />
+			<img id="img2" class="imgs" src="sakuram.gif" />
+			<img id="img3" class="imgs" src="sakuram.gif" />
+			<img id="img4" class="imgs" src="sakuram.gif" />
+			<img id="img5" class="imgs" src="sakuram.gif" />
 		</div>
 
 	</body>
