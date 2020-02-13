@@ -108,34 +108,55 @@
 				topi[4] = $('#img4').top;
 				topi[5] = $('#img5').top;*/
 				function update(img){
-					var i = $(img);
-					$(i).animate({top:"-="+(window.innerWidth/2+100)+"px",left:"-="+(Math.cos(($(i).top%360)*Math.PI/180))+"vw"},5000);
-					var n = $(i).top;
-					if( n <= "-15px"){
-						$(i).top += window.outerHeight;
-						$(i).left = Math.random()*window.outerWidth;
-					};
-					update(img);
+					$(img).animate({top:"-5vw"},5000,function(){
+						$(this).left-=(Math.cos(($(img).top%360)*Math.PI/180))+"vw";
+						$(this).top-=window.innerWidth/2+100+"px";
+					});
 				};
 		//		;left:Math.cos(($(img).top%360)*Math.PI/180)*window.innerWidth+$(img).left
 				$('#img0').ready(function(){
 					update("#img0");
+					while($('#img0').top>'0vw'){
+						update("#img0");
+						$('#img0').css('top','9vw');
+					}
 				});
-				/*$('#img1').ready(function(){
+				$('#img1').ready(function(){
 					update("#img1");
+					while($('#img1').top>'0vw'){
+						update("#img1");
+						$('#img1').css('top','10vw');
+					}
 				});
 				$('#img2').ready(function(){
 					update("#img2");
+					while($('#img2').top<'0vw'){
+						update("#img2");
+						$('#img2').css('top','12vw');
+					}
 				});
 				$('#img3').ready(function(){
 					update("#img3");
+					while($('#img3').top=='-5vw'){
+						$('#img3').css('top','15vw');
+						update("#img3");
+					}
 				});
 				$('#img4').ready(function(){
 					update("#img4");
+					while($('#img4').top<'0vw'){
+						update("#img4");
+						$('#img4').css('top','18vw');
+					}
 				});
 				$('#img5').ready(function(){
 					update("#img5");
-				});*/
+					while($('#img5').top<'0vw'){
+						update("#img5");
+						$('#img5').css('top','20vw');
+					}
+				});
+
 			});
 
 		</script>
