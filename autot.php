@@ -20,45 +20,46 @@
 			}
 			#img0{
 				position: absolute;
-				top: 700px;
-				right: 10px;
-				transition: transform 10s;
-				animation: animado 10s infinite;
+				animation: anione 10s linear infinite;
+			}@keyframes anione {
+				0%   { top: 90vw; right:0.5vw;}
+				50%  { top: 35vw; right:2.5vw;transform:rotate(180deg);}
+				100% { top:-10vw; right:5vw;transform:rotate(360deg);}
 			}#img1{
 				position: absolute;
-				top: 600px;
-				right: 40px;
-				transition: transform 10s;
-				animation: animado 10s infinite;
+				animation: anitwo 10s linear infinite;
+			}@keyframes anitwo {
+				0%   { top: 80vw; right:4vw;}
+				50%  { top: 25vw; right:30vw;transform:rotate(180deg);}
+				100% { top: -10vw; right:60vw;transform:rotate(360deg);}
 			}#img2{
 				position: absolute;
-				top: 1000px;
-				left: 60px;
-				transition: transform 10s;
-				animation: animado 10s infinite;
+				animation: anithr 10s linear infinite;
+			}@keyframes anithr {
+				0%   { top: 80vw; left:  6vw;}
+				50%  { top:  40vw; left: 60vw;transform:rotate(180deg);}
+				100% { top: -10vw; left:104vw;transform:rotate(360deg);}
 			}#img3{
 				position: absolute;
-				top: 500px;
-				left: 100px;
-				transition: transform 10s;
-				animation: animado 10s infinite;
+				animation: anifor 10s linear infinite;
+			}@keyframes anifor {
+				0%   { top: 70vw; left:10vw;}
+				50%  { top: 30vw; left:25vw;transform:rotate(180deg);}
+				100% { top:-10vw; left:40vw;transform:rotate(360deg);}
 			}#img4{
 				position: absolute;
-				top: 300px;
-				left: 50px;
-				transition: transform 10s;
-				animation: animado 10s infinite;
+				animation: anifiv 10s linear infinite;
+			}@keyframes anifiv {
+				0%   { top: 90vw; left:3vw;}
+				50%  { top:  50vw; left:6vw;transform:rotate(180deg);}
+				100% { top: -10vw; left:9vw;transform:rotate(360deg);}
 			}#img5{
 				position: absolute;
-				top: 1100px;
-				right: 15px;
-				transition: transform 10s;
-				animation: animado 10s infinite;
-			}
-			@keyframes animado {
-				0%{transform: translateY(this.top) rotate(0deg);}
-				50%{transform: translateY(this.top/2) rotate(180deg);}
-				100%{transform: translateY("-50px") rotate(0deg);}
+				animation: anisix 10s linear infinite;
+			}@keyframes anisix {
+				0%   { top: 90vw; right:1vw;}
+				50%  { top: 45vw; right:11vw;transform:rotate(180deg);}
+				100% { top:-10vw; right:21vw;transform:rotate(360deg);}
 			}
 			#upside{
 				/*z-index: 5;*/
@@ -116,7 +117,7 @@
 				}
 			}
 			
-			$(document).ready(function(){
+			//$(document).ready(function(){
 /*				topi    = [];
 				topi[0] = $('#img0').top;
 				topi[1] = $('#img1').top;
@@ -174,7 +175,7 @@
 					}
 				});*/
 
-			});
+			//});
 
 		</script>
 	</head>
