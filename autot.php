@@ -3,13 +3,12 @@
 	<head>
 		<title>Teste</title>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		
 		<style type="text/css">
 			body{
-				background: url("sakura.gif");
-				background-repeat: no-repeat;
 				overflow: hidden;
 			}
 			#wrapper{
@@ -18,48 +17,62 @@
 			img{
 				opacity: 0.7;
 			}
+			#imgf{
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				z-index: -1;
+				animation: anibak 10s linear infinite;
+			}@keyframes anibak {
+				0%  {top: 25vw;left: 50vw;							}
+				20% {top: -2vw;left: -5vw;transform:rotate(0deg);	}
+				40% {top: -2vw;left: 94vw;transform:rotate(-540deg);}
+				60% {top: 40vw;left: 94vw;transform:rotate(-180deg);}
+				80% {top: 40vw;left: -5vw;transform:rotate(-720deg);}
+				100%{top: 25vw;left: 50vw;							}
+			}
 			#img0{
 				position: absolute;
 				animation: anione 10s linear infinite;
 			}@keyframes anione {
-				0%   { top: 90vw; right:0.5vw;}
-				50%  { top: 35vw; right:2.5vw;transform:rotate(180deg);}
+				0%   { top: 50vw; right:1vw;}
+				50%  { top: 20vw; right:3vw;transform:rotate(180deg);}
 				100% { top:-10vw; right:5vw;transform:rotate(360deg);}
-			}#img1{
-				position: absolute;
-				animation: anitwo 10s linear infinite;
-			}@keyframes anitwo {
-				0%   { top: 80vw; right:4vw;}
-				50%  { top: 25vw; right:30vw;transform:rotate(180deg);}
-				100% { top: -10vw; right:60vw;transform:rotate(360deg);}
-			}#img2{
-				position: absolute;
-				animation: anithr 10s linear infinite;
-			}@keyframes anithr {
-				0%   { top: 80vw; left:  6vw;}
-				50%  { top:  40vw; left: 60vw;transform:rotate(180deg);}
-				100% { top: -10vw; left:104vw;transform:rotate(360deg);}
-			}#img3{
-				position: absolute;
-				animation: anifor 10s linear infinite;
-			}@keyframes anifor {
-				0%   { top: 70vw; left:10vw;}
-				50%  { top: 30vw; left:25vw;transform:rotate(180deg);}
-				100% { top:-10vw; left:40vw;transform:rotate(360deg);}
-			}#img4{
-				position: absolute;
-				animation: anifiv 10s linear infinite;
-			}@keyframes anifiv {
-				0%   { top: 90vw; left:3vw;}
-				50%  { top:  50vw; left:6vw;transform:rotate(180deg);}
-				100% { top: -10vw; left:9vw;transform:rotate(360deg);}
 			}#img5{
 				position: absolute;
 				animation: anisix 10s linear infinite;
 			}@keyframes anisix {
-				0%   { top: 90vw; right:1vw;}
-				50%  { top: 45vw; right:11vw;transform:rotate(180deg);}
-				100% { top:-10vw; right:21vw;transform:rotate(360deg);}
+				0%   { top:50vw; right: 3vw;}
+				50%  { top:15vw; right:15vw;transform:rotate(180deg);}
+				100% { top:-5vw; right:30vw;transform:rotate(360deg);}
+			}#img1{
+				position: absolute;
+				animation: anitwo 10s linear infinite;
+			}@keyframes anitwo {
+				0%   { top:50vw; right:  2vw;}
+				50%  { top:20vw; right: 50vw;transform:rotate(180deg);}
+				100% { top:-3vw; right:100vw;transform:rotate(360deg);}
+			}#img2{
+				position: absolute;
+				animation: anithr 10s linear infinite;
+			}@keyframes anithr {
+				0%   { top:50vw; left:  6vw;}
+				50%  { top:20vw; left: 60vw;transform:rotate(180deg);}
+				100% { top:-3vw; left:100vw;transform:rotate(360deg);}
+			}#img3{
+				position: absolute;
+				animation: anifor 10s linear infinite;
+			}@keyframes anifor {
+				0%   { top: 50vw; left:10vw;}
+				50%  { top: 20vw; left:25vw;transform:rotate(180deg);}
+				100% { top: -7vw; left:40vw;transform:rotate(360deg);}
+			}#img4{
+				position: absolute;
+				animation: anifiv 10s linear infinite;
+			}@keyframes anifiv {
+				0%   { top: 50vw; left:3vw;}
+				50%  { top: 15vw; left:5vw;transform:rotate(180deg);}
+				100% { top:-10vw; left:8vw;transform:rotate(360deg);}
 			}
 			#upside{
 				/*z-index: 5;*/
@@ -207,6 +220,7 @@
 
 				</table>
 			</div>
+			<img id="imgf" class="imgs" src="sakura.gif" />
 			<img id="img0" class="imgs" src="sakuram.gif" />
 			<img id="img1" class="imgs" src="sakuram.gif" />
 			<img id="img2" class="imgs" src="sakuram.gif" />
