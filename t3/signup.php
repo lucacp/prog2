@@ -15,11 +15,10 @@
 		}
 
 		include_once '../database.php';
-		$database="eventbase";
-		mysql_select_db($database);
+		
 		$query="SELECT `id`,`nome`,`senha`,`nivel` FROM `usuario` WHERE `nome`='$login' AND `senha`='$pass';";
-		$result=mysql_query($query,$csql);
-		$rows=mysql_fetch_assoc($result);
+		$result=Query($csql,$query);
+		$rows=Associa($result);
 		if($rows>0){
 			include_once '../dataout.php';
 			$_SESSION['usuar']=$rows['id'];
@@ -28,17 +27,17 @@
 		}
 		else{ 
 			$query="SELECT `id`,`nome` FROM `usuario` WHERE `nome`='$login';";
-			$result=mysql_query($query,$csql);
-			$rows=mysql_fetch_assoc($result);
+			$result=Query($csql,$query);
+			$rows=Associa($result);
 			if($rows>0){
 				$_SESSION['erro']=3;
 			}
 			else{
 				$insert="INSERT INTO `usuario` values(null,'$login','$pass',2,'$email','$cpf','$full');";
-				$result=mysql_query($insert,$csql);
+				$result=Query($insert);
 				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `nome`='$login' and `senha`='$pass';";
-				$result2=mysql_query($query,$csql);
-				$rows2=mysql_fetch_assoc($result2);
+				$result2=Query($csql,$query);
+				$rows2=Associa($result2);
 				include_once '../dataout.php';
 				if($rows2>0){
 					$_SESSION['usuar']=$rows2['id'];

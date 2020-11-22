@@ -5,14 +5,12 @@
 	}
 	else{
 		include_once '../database.php';
-		$database="eventbase";
-		mysql_select_db($database);
 		$query="SELECT `eid`,`nome` FROM `evento` WHERE `nivel`>='".$_SESSION['nivel']."';";
-		$result=mysql_query($query,$csql);
+		$result=Query($csql,$query);
 		$uid=$_SESSION['usuar'];
 		$query2="SELECT `pid`,`eid` FROM `particip` WHERE `uid`='$uid';";
-		$result2=mysql_query($query2,$csql);
-		$rows5=mysql_fetch_assoc($result2);
+		$result2=Query($csql,$query2);
+		$rows5=Associa($result2);
 		if ($rows5) {
 			$_SESSION['even']=1;
 		}
@@ -46,7 +44,7 @@
 				
 					<?php	
 					include '../localImages.php';
-					$rows=mysql_fetch_assoc($result);
+					$rows=Associa($result);
 					for($i=1,$max=5;$rows&&$max!=0;$i++,$max--) {
 						echo '<a href="detailEvent.php?event='.$rows['eid'].'">';
 						echo '<img class="img-rounded" src="'.$InLocal.$rows['nome'].'" />';
@@ -58,7 +56,7 @@
 							echo $no[$i2];
 						};
 						echo '</a>';
-						$rows=mysql_fetch_assoc($result);
+						$rows=Associa($result);
 						if ($i==3) {
 							$i=0;
 						};
@@ -72,10 +70,10 @@
 								echo '<a href="detailEvent.php?event='.$rows5['eid'].'">';
 								$evid=$rows5['eid'];
 								$query4="SELECT `eid`,`nome` FROM `evento` WHERE `eid`='$evid';";
-								$result=mysql_query($query4,$csql);
-								$rows0=mysql_fetch_assoc($result);
+								$result=Query($csql,$query4);
+								$rows0=Associa($result);
 								echo '<img src="'.$InLocal.$rows0['nome'].'" />';
-								$rows5=mysql_fetch_assoc($result2);
+								$rows5=Associa($result2);
 								echo '</a>';
 							};
 							echo '</div>';	

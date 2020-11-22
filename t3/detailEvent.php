@@ -4,19 +4,17 @@
 		header('location:../t3.php');
 	}
 	if (isset($_GET['event'])) {
-		$_SESSION['evento']=$ev=$_GET['event'];
+		$ev=$_GET['event'];
 		
 		include_once '../database.php';
-		$database="eventbase";
-		mysql_select_db($database);
 		$query="SELECT `nome`,`descr`,`date`,`lid` FROM `evento` where `eid`='$ev';";
-		$result=mysql_query($query,$csql);
-		$rows=mysql_fetch_assoc($result);
+		$result=Query($csql,$query);
+		$rows=Associa($result);
 		$lid=$rows['lid'];
 		$query2="SELECT * FROM `local` where `lid`='$lid';";
-		$result2=mysql_query($query2,$csql);
-		if (mysql_num_rows($result2)>0) {
-			$rowsl=mysql_fetch_assoc($result2);
+		$result2=Query($csql,$query2);
+		if (mysqli_num_rows($result2)>0) {
+			$rowsl=Associa($result2);
 			$_SESSION['local']=1;
 		}
 		else
@@ -71,12 +69,13 @@
 			<div class="fill thumbnail"><span>Detalhes:</span>	
 				<?php echo '<h3 class="text-center">'.$rows['descr'].'</h3></div>'; ?>
 				<div class="thumbnail"><span>Data do Evento:</span>
-					<?php 	$data=$rows['date'];
-					$data2=explode("-", $data);
-					$ano=$data2[0];
-					$mes=$data2[1];
-					$dia=$data2[2];
-					echo '<h3 class="text-center">'.$dia.'/'.$mes.'/'.$ano.'</h3>';
+					<?php 	
+					$data 	= $rows['date'];
+					$data2	= new DateTime($data);
+//					$ano=$data2[0];
+//					$mes=$data2[1];
+//					$dia=$data2[2];
+					echo '<h3 class="text-center">'.$data2->format('d/m/Y').'</h3>';
 					if ($rows['date']!=null) {
 						echo '<button id="participar" class="btn btn-primary btn-lg btn-block">Quero Participar</button>';
 					}

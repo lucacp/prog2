@@ -44,26 +44,26 @@
 			};
 			include_once '../database.php';
 			$database="eventbase";
-			mysql_select_db($database);
+			
 			$query="SELECT `nomel` FROM `local` where `nomel`='$arq';";
-			$result=mysql_query($query,$csql);
-			if(mysql_num_rows($result)>0){
+			$result=Query($csql,$query);
+			if(mysqli_num_rows($result)>0){
 				if ($_POST['overwrite']==1) {
 					$query2="UPDATE `local` SET `rua`='$rua',`num`='$num', `bairro`='$bair',`nomei`='$nomeArq',CONVERT(`cidade` as UTF-8)='$cidad' Where `nomel`='$arq'";
-					$result2=mysql_query($query2,$csql);
+					$result2=Query($csql,$query2);
 					echo '<div class="thumbnail">Local Atualizado Com sucesso.</div>';	
 				}else{
 					echo '<div class="thumbnail">Local ja existente, PorFavor escolha outro nome para o Local.</div>';
-					$rows=mysql_fetch_assoc($result);
+					$rows=Associa($result);
 					$_SESSION['localcreat']=$rows['nomel'];
 				};
 			}
 			else{
 				$query2="INSERT INTO `local` values(null,'$arq','$rua','$num','$bair','$cep',$capac,'$nomeArq','$cidad','$uf');";
-				mysql_query($query2,$csql);
+				Query($csql,$query2);
 				$query="SELECT `nomel` FROM `local` where `nome`='$arq';";
-				$result=mysql_query($query,$csql);
-				$rows=mysql_fetch_assoc($result);
+				$result=Query($csql,$query);
+				$rows=Associa($result);
 				if($rows>0){
 					echo '<div>Local Cadastrado com Sucesso</div>';
 				};

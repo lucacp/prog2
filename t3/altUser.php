@@ -20,19 +20,17 @@
 		}
 		else{
 			include_once '../database.php';
-			$database="eventbase";
-			mysql_select_db($database);
 			//echo $useri;
 			$query3="SELECT `id`,`nome`,`nivel` FROM `usuario` WHERE `id`='$useri';";
-			$result1=mysql_query($query3,$csql);
-			$rows=mysql_fetch_assoc($result1);
+			$result1=Query($query3);
+			$rows=Associa($result1);
 			if ($rows>0) {
 				$user=$rows['id'];
 				$query1="UPDATE `usuario` SET `senha`='$passN1' WHERE `id`='$useri';";
-				$result1=mysql_query($query1,$csql);
+				$result1=Query($csql,$query1);
 				$query="SELECT `id`,`nome`,`senha`,`nivel` from `usuario` where `id`='$useri' and `senha`='$passN1';";
-				$result=mysql_query($query,$csql);
-				$rows2=mysql_fetch_assoc($result);
+				$result=Query($csql,$query);
+				$rows2=Associa($result);
 				if ($rows2>0) {
 					echo 'OK';
 				}

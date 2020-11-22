@@ -4,6 +4,7 @@
 		header('location:t3/index.php');
 	}
 	else{
+		include 'database.php';
 		if (isset($_GET['envio'])) {
 			$login=$_POST['login'];
 			$pass1=$_POST['pass'];
@@ -15,13 +16,9 @@
 				$_SESSION['erro']=2;
 			}
 			//echo $pass1."se";
-			include 'database.php';
-			$database="eventbase";
-			mysql_select_db($database);
 			$query2="SELECT `id`,`nome`,`senha`,`nivel` FROM `usuario` WHERE `nome`='$login' AND `senha`='$pass1';";
-			$result2=mysql_query($query2,$csql);
-			$rows1=mysql_fetch_assoc($result2);
-			include 'dataout.php';
+			$result2=Query($csql,$query2);
+			$rows1=Associa($result2);
 			if($rows1>0){
 				$_SESSION['usuar']=$rows1['id'];
 				$_SESSION['nivel']=$rows1['nivel'];
@@ -33,13 +30,8 @@
 		}else{
 			unset($_SESSION['erro']);
 		};
-	
-	
-		include 'database.php';
-		$database="eventbase";
-		mysql_select_db($database);
 		$query="SELECT `nome` FROM `evento` where `nivel`>='2';";
-		$result=mysql_query($query,$csql);
+		$result=Query($csql,$query);
 	};
 	function alerta($id){
 		if($id==4)
@@ -83,7 +75,7 @@
 				}?>
 				<h1 id="tit">Eventos</h1>
 				<?php
-				$rows=mysql_fetch_assoc($result);
+				$rows=Associa($result);
 				if($rows>0){
 					$_SESSION['view']=1;
 				}
@@ -96,7 +88,7 @@
 					if($_SESSION['view']==1){
 						for($i=1;$rows&&$i<5;$i++){
 							echo '<div class="ev1"><a href="?event='.$i.'"><img class="img-circle" src="'.$OutLocal.$rows['nome'].'" /></a></div>';
-							$rows=mysql_fetch_assoc($result);
+							$rows=Associa($result);
 						};
 					}
 					else if($_SESSION['view']==0){

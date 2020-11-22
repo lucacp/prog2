@@ -1,3 +1,3 @@
 <?php
-	mysql_close($csql);
+	mysqli_close($csql);
 ?>

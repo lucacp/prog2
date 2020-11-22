@@ -42,18 +42,18 @@
 				};
 				include_once '../database.php';
 				$database="eventbase";
-				mysql_select_db($database);
+				
 				$query="SELECT `nome` FROM `evento` where `nome`='$arq';";
-				$result=mysql_query($query,$csql);
-				if($rows=mysql_fetch_assoc($result) ) {
+				$result=Query($csql,$query);
+				if($rows=Associa($result) ) {
 					echo 'Evento ja existente.\n Por favor escolha outro nome de evento';
 				}
 				else{
 					$query2="INSERT INTO `evento` values(null,'$arq','$descr','".$_SESSION['nivel']."', null,'$Data','$vagas');";
-					mysql_query($query2,$csql);
+					Query($csql,$query2);
 					$query="SELECT `nome` FROM `evento` where `nome`='".$arq."';";
-					$result=mysql_query($query,$csql);
-					if($rows=mysql_fetch_assoc($result) ) {
+					$result=Query($csql,$query);
+					if($rows=Associa($result) ) {
 						echo 'Evento Cadastrado com Sucesso';
 					};
 				};

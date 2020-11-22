@@ -110,15 +110,15 @@
 		
 		include_once '../database.php';
 		$database="eventbase";
-		mysql_select_db($database);
+		
 		$query.=";";
 		unset($_SESSION['busca1']);
 		unset($_SESSION['busca2']);
 		unset($_SESSION['busca3']);
 		unset($_SESSION['busca4']);
 		unset($_SESSION['busca5']);
-		$result0=mysql_query($query,$csql);
-		$rows0=mysql_fetch_assoc($result0);
+		$result0=Query($csql,$query);
+		$rows0=Associa($result0);
 		if($rows0!=null) {
 			$_SESSION['busca']=1;
 		}
@@ -183,10 +183,10 @@
 							<?php
 								include '../database.php';
 								$database="eventbase";
-								mysql_select_db($database);
+								
 								$query1="SELECT `estado` FROM `local` ;";
-								$result3=mysql_query($query1,$csql);
-								$rows1=mysql_fetch_assoc($result3);
+								$result3=Query($csql,$query1);
+								$rows1=Associa($result3);
 								echo '<select id="estad" name="estado"><option value="">Escolha um</option>';
 								for ($i=0; $rows1; $i++) { 
 									
@@ -199,7 +199,7 @@
 										echo '<option value="'.$rows1['estado'].'">'.$rows1['estado'].'</option>';
 									};
 									$uf=$rows1['estado'];
-									$rows1=mysql_fetch_assoc($result3);
+									$rows1=Associa($result3);
 								};
 								include '../dataout.php';
 								echo '</select>';
@@ -228,7 +228,7 @@
 						else{
 							include '../database.php';
 							$database="eventbase";
-							mysql_select_db($database);
+							
 							include '../localImages.php';
 							for (;$rows0;) {
 								$nome=explode(".",$rows0['nome']);
@@ -240,7 +240,7 @@
 							 		echo $nome[$i3];
 							 	};
 							 	echo '</h3></a></div>';
-								$rows0=mysql_fetch_assoc($result0);
+								$rows0=Associa($result0);
 							};
 							echo '</div>';
 							

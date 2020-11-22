@@ -3,17 +3,15 @@
 	if (isset($_SESSION['evento'])) {
 		$ev=$_SESSION['evento'];
 		include_once '../database.php';
-		$database="eventbase";
-		mysql_select_db($database);
 		$usuario=$_SESSION['usuar'];
 		$query="SELECT * FROM `particip` WHERE `uid`='$usuario' AND `eid`='$ev';";
-		$result2=mysql_query($query,$csql);
-		$rows3=mysql_fetch_assoc($result2);
+		$result2=Query($csql,$query);
+		$rows3=Associa($result2);
 		if (!$rows3) {
 			$query2="INSERT INTO `particip` values(null,'$ev','$usuario',null,null);";
-			$result3=mysql_query($query2,$csql);
-			$result4=mysql_query($query,$csql);
-			$rows4=mysql_fetch_assoc($result4);
+			$result3=Query($csql,$query2);
+			$result4=Query($csql,$query);
+			$rows4=Associa($result4);
 			if (!$rows4) {
 				echo 'Problemas com o ingresso.';
 			}
